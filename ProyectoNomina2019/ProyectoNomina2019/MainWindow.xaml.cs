@@ -22,6 +22,7 @@ namespace ProyectoNomina2019
     {
         public MainWindow()
         {
+            //hola a todos *prueba realizada por Jonathan*
             InitializeComponent();
         }
     }
