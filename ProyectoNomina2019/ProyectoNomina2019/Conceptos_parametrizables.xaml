@@ -5,8 +5,30 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ProyectoNomina2019"
         mc:Ignorable="d"
-        Title="Conceptos_parametrizables" Height="450" Width="800">
+        Title="Conceptos Parametrizables" Height="552" Width="500"
+        WindowStartupLocation="CenterScreen"
+        Loaded="Window_Loaded">
+
+
+
     <Grid>
-        
+        <Label Content="ID Concepto" HorizontalAlignment="Left" Margin="46,34,0,0" VerticalAlignment="Top"/>
+        <Label Content="Descripcion" HorizontalAlignment="Left" Margin="46,65,0,0" VerticalAlignment="Top"/>
+        <Label Content="Tipo" HorizontalAlignment="Left" Margin="46,96,0,0" VerticalAlignment="Top"/>
+
+        <TextBox Name="txtIdConcepto" HorizontalAlignment="Left" Height="23" Margin="174,34,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="64"/>
+        <!--<WindowsFormsHost HorizontalAlignment="Left" Height="0" Margin="-216,131,0,0" VerticalAlignment="Top" Width="21"/>-->
+        <TextBox Name="txtDescripcion"  HorizontalAlignment="Left" Height="23" Margin="174,62,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="64"/>
+        <TextBox Name="txtTipo" HorizontalAlignment="Left" Height="23" Margin="174,90,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="64"/>
+
+        <GroupBox Header="Conceptos" Canvas.Left="10" Canvas.Top="256" Width="466" Margin="10,180,16,85">
+            <DataGrid Name="dgConceptos" MouseDoubleClick="dgConceptos_MouseDoubleClick"></DataGrid>
+        </GroupBox>
+
+        <Button x:Name="btnGuardar" Content="Guardar" HorizontalAlignment="Left" Margin="386,463,0,0" VerticalAlignment="Top" Width="96" RenderTransformOrigin="0.312,-0.181" Click="btnGuardar_Click" />
+        <Button x:Name="btnLimpiar" Content="Limpiar" HorizontalAlignment="Left" Margin="82,463,0,0" VerticalAlignment="Top" Width="95" RenderTransformOrigin="0.429,1.019" Click="btnLimpiar_Click" />
+        <Button x:Name="btnEliminar" Content="Eliminar" HorizontalAlignment="Left" Margin="182,463,0,0" VerticalAlignment="Top" Width="95" Click="btnEliminar_Click" />
+        <Button x:Name="btnModificar" Content="Modificar" HorizontalAlignment="Left" Margin="282,463,0,0" VerticalAlignment="Top" Width="95" Click="btnModificar_Click" />
+
     </Grid>
 </Window>
