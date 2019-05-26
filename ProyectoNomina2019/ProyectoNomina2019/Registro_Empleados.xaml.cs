@@ -74,21 +74,13 @@ namespace ProyectoNomina2019
                 txtCedula.Text = a.Nro_Documento;
                 txtDireccion.Text = a.Direccion;
                 txtTelefono.Text = a.Nro_Telefono;
-
-
                 txtSueldo.Text = a.Salario_Basico.ToString();
                 FechaIncorporacion.Text = a.Fecha_Incorporacion.ToString();
                 FechaNacimiento.Text = a.Fecha_Nacimiento.ToString();
-
-
-
                 String stringPath = a.Imagen_Perfil;
                 Uri imageUri = new Uri(stringPath);
                 BitmapImage imageBitmap = new BitmapImage(imageUri);
                 imgPhoto.Source = imageBitmap;
-
-
-
             }
         }
 
@@ -176,15 +168,9 @@ namespace ProyectoNomina2019
             registro.Direccion = txtDireccion.Text;
             registro.Nro_Telefono = txtTelefono.Text;
 
-
-
-
             registro.Fecha_Nacimiento = DateTime.Parse(FechaNacimiento.Text);
             registro.Fecha_Incorporacion = DateTime.Parse(FechaIncorporacion.Text);
             registro.Salario_Basico = int.Parse(txtSueldo.Text);
-
-
-
 
             registro.Imagen_Perfil = imgPhoto.Source.ToString();
 

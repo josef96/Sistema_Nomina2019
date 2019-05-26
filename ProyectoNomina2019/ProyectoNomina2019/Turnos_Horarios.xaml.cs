@@ -46,38 +46,23 @@ namespace ProyectoNomina2019
 
         private void btnGuardar_Click(object sender, RoutedEventArgs e)
         {
-
-
-            // string asd = Convert.ToString(txtHoraEntrada.Text);
-
-
-            int ejem = 0;
-
-
-
-            if (txtHoraEntrada.Text.Length == 5)
+            TimeSpan ts;
+            var hora_entrada = txtHoraEntrada.Text;
+            var hora_salida = txtHoraSalida.Text;
+            if (TimeSpan.TryParse(hora_entrada,out ts) && TimeSpan.TryParse(hora_salida, out ts))
             {
-
-                if (int.TryParse(txtHoraEntrada.Text, out ejem))
-                {
                     Turno turno = new Turno();
-                    turno.Hora_Entrada = txtHoraEntrada.Text;
-                    turno.Hora_Salida = txtHoraSalida.Text;
+                    turno.Hora_Entrada = hora_entrada;
+                    turno.Hora_Salida = hora_salida;
                     turno.Observaciones = txtObservaciones.Text;
 
                     datos.Turno.Add(turno);
                     datos.SaveChanges();
                     CargarDatos();
-                }
-                else
-                {
-                    MessageBox.Show("Debe ingresar en formato fecha (hh:mm)");
-                }
-
             }
             else
             {
-                MessageBox.Show("Debe ingresar en formato fecha (hh:mm)");
+                MessageBox.Show("Debe ingresar en formato 24 horas (hh:mm)");
             }
 
         }
@@ -93,7 +78,7 @@ namespace ProyectoNomina2019
 
         private void btnLimpiar_Click(object sender, RoutedEventArgs e)
         {
-
+            txtIdTurno.Text = string.Empty;
             txtHoraEntrada.Text = string.Empty;
             txtHoraSalida.Text = string.Empty;
             txtObservaciones.Text = string.Empty;

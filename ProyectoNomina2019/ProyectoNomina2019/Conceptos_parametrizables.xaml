@@ -16,7 +16,7 @@
         <Label Content="Descripcion" HorizontalAlignment="Left" Margin="46,65,0,0" VerticalAlignment="Top"/>
         <Label Content="Tipo" HorizontalAlignment="Left" Margin="46,96,0,0" VerticalAlignment="Top"/>
 
-        <TextBox Name="txtIdConcepto" HorizontalAlignment="Left" Height="23" Margin="174,34,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="64"/>
+        <TextBox Name="txtIdConcepto" HorizontalAlignment="Left" Height="23" Margin="174,34,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="64" IsReadOnly="True"/>
         <!--<WindowsFormsHost HorizontalAlignment="Left" Height="0" Margin="-216,131,0,0" VerticalAlignment="Top" Width="21"/>-->
         <TextBox Name="txtDescripcion"  HorizontalAlignment="Left" Height="23" Margin="174,62,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="64"/>
         <TextBox Name="txtTipo" HorizontalAlignment="Left" Height="23" Margin="174,90,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="64"/>

@@ -45,21 +45,38 @@ namespace ProyectoNomina2019
 
         private void btnGuardar_Click(object sender, RoutedEventArgs e)
         {
+            string desc = txtDescripcion.Text;
+            string tipo = txtTipo.Text;
 
-            Concepto concepto = new Concepto();
+            if (desc != null && tipo != null )
+            {
+                if (desc.Length <= 100)
+                {
+                    if (tipo.Length == 1)
+                    {
+                        Concepto c = new Concepto();
+                        c.Descripcion = desc;
+                        c.Tipo = tipo;
 
-            concepto.Descripcion = txtDescripcion.Text;
-            concepto.Tipo = txtTipo.Text;
-
-            datos.Concepto.Add(concepto);
-            datos.SaveChanges();
-            CargarDatos();
+                        datos.Concepto.Add(c);
+                        datos.SaveChanges();
+                        CargarDatos();
+                    }
+                    else
+                        MessageBox.Show("El campo de tipo debe tener solo una letra");
+                }
+                else
+                    MessageBox.Show("El campo descripcion no puede exceder los 100 caracteres");
+            }
+            else
+                MessageBox.Show("Hay campos vacios");
+           
 
         }
 
         private void btnLimpiar_Click(object sender, RoutedEventArgs e)
         {
-
+            txtIdConcepto.Text = string.Empty;
             txtDescripcion.Text = string.Empty;
             txtTipo.Text = string.Empty;
 
