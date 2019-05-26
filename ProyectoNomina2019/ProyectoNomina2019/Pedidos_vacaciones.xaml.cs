@@ -10,19 +10,17 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace ProyectoNomina2019
 {
     /// <summary>
-    /// Lógica de interacción para MainWindow.xaml
+    /// Lógica de interacción para Pedidos_vacaciones.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class Pedidos_vacaciones : Window
     {
-        public MainWindow()
+        public Pedidos_vacaciones()
         {
-            //hola a todos *prueba realizada por Jonathan*
             InitializeComponent();
         }
     }

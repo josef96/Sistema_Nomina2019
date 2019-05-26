@@ -1,0 +1,54 @@
+﻿<Window x:Class="ProyectoNomina2019.w_login"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ProyectoNomina2019"
+        mc:Ignorable="d"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        Title="Login" Height="474.764" Width="537.5"
+        ResizeMode="NoResize" 
+        WindowStartupLocation="CenterScreen" WindowStyle="None" Loaded="Window_Loaded">
+    <Window.ContextMenu>
+        <ContextMenu AllowDrop="True" Background="#FF121213" BorderBrush="Black" ForceCursor="True" OpacityMask="Black" OverridesDefaultStyle="False">
+            <ContextMenu.BindingGroup>
+                <BindingGroup/>
+            </ContextMenu.BindingGroup>
+        </ContextMenu>
+    </Window.ContextMenu>
+    <Grid Margin="0,0,0,39">
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="0*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="134*"/>
+            <ColumnDefinition Width="335*"/>
+            <ColumnDefinition Width="63*"/>
+            <ColumnDefinition Width="0*"/>
+        </Grid.ColumnDefinitions>
+
+        <Rectangle Height="476" VerticalAlignment="Top" Grid.ColumnSpan="3" Margin="0,0,0,-42" Grid.RowSpan="2">
+            <Rectangle.Fill>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FF141634"/>
+                </LinearGradientBrush>
+            </Rectangle.Fill>
+        </Rectangle>
+
+        <Rectangle Height="211" VerticalAlignment="Bottom" Margin="35,0,35,59" RadiusY="10" RadiusX="10" Fill="#2e3137" Grid.ColumnSpan="3">
+            <Rectangle.Effect>
+                <DropShadowEffect BlurRadius="15" Direction="0" RenderingBias="Quality" ShadowDepth="1" Color="#0066cc"/>
+            </Rectangle.Effect>
+        </Rectangle>
+        <Grid VerticalAlignment="Bottom" Margin="35,0,35,59" Height="240" Grid.ColumnSpan="3">
+            <StackPanel VerticalAlignment="Center" Margin="20,39,10,15" Height="186">
+                <TextBox Name="txtUsuario" Margin="0,10,44,10" materialDesign:HintAssist.Hint=" USUARIO"  FontFamily="Champagne &amp; Limousines" FontSize="18" Foreground="White" Height="45" LostFocus="txtUser_LostFocus" />
+                <PasswordBox Name="txtPass" Margin="0,10,44,10" materialDesign:HintAssist.Hint=" CONTRASEÑA" FontFamily="Champagne &amp; Limousines" FontSize="18" Foreground="White" Height="45"/>
+            </StackPanel>
+        </Grid>
+        <Button Name="btnLogin" Width="150" Background="#545d6a" BorderBrush="#545d6a" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="54.489,0,134.511,83" Content="LOGIN" Click="btnLogin_Click" Grid.Column="1"/>
+        <Button Name="btnSalir" Width="150" Background="#545d6a" BorderBrush="#545d6a" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="54.489,0,134.511,10" Content="SALIR" Grid.Column="1" Click="btnSalir_Click"></Button>
+        <Image Source="Assets/usuario.png" Height="106" VerticalAlignment="Top" Margin="36,24,107,0" Grid.Column="1"/>
+    </Grid>
+</Window>
