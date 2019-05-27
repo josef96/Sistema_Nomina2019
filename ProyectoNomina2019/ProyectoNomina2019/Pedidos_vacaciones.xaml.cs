@@ -19,9 +19,27 @@ namespace ProyectoNomina2019
     /// </summary>
     public partial class Pedidos_vacaciones : Window
     {
+        NominaEntities datos;
         public Pedidos_vacaciones()
         {
             InitializeComponent();
+            datos = new NominaEntities();
+        }
+        public void actualizarGrilla()
+        {
+            dgDatosVaciones.ItemsSource = null;
+            var vVacaciones = datos.Vacaciones.ToList();
+            dgDatosVaciones.ItemsSource = vVacaciones;
+        }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            actualizarGrilla();
+        }
+
+        private void btnSalir_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
         }
     }
 }

@@ -19,9 +19,26 @@ namespace ProyectoNomina2019
     /// </summary>
     public partial class Anticipos_salariales : Window
     {
+        NominaEntities datos;
         public Anticipos_salariales()
         {
             InitializeComponent();
+            datos = new NominaEntities();
+        }
+        public void actualizarGrilla()
+        {
+            dgDatosAnticipoSalarial.ItemsSource = null;
+            var vAnticipoSalarial = datos.Anticipo.ToList();
+            dgDatosAnticipoSalarial.ItemsSource = vAnticipoSalarial;
+        }
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            actualizarGrilla();
+        }
+
+        private void btnSalir_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
         }
     }
 }

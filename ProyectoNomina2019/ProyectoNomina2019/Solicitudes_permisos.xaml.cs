@@ -19,9 +19,27 @@ namespace ProyectoNomina2019
     /// </summary>
     public partial class Solicitudes_permisos : Window
     {
+        NominaEntities datos;
         public Solicitudes_permisos()
         {
             InitializeComponent();
+            datos = new NominaEntities();
+        }
+        public void actualizarGrilla()
+        {
+            dgPermisos.ItemsSource = null;
+            var vPermiso = datos.Vacaciones.ToList();
+            dgPermisos.ItemsSource = vPermiso;
+        }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            actualizarGrilla();
+        }
+
+        private void btnSalir_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
         }
     }
 }
