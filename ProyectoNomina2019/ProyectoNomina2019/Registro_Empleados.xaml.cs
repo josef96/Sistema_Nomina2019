@@ -23,6 +23,7 @@ namespace ProyectoNomina2019
 
         //Creamos el objeto 
         NominaEntities datos;
+        public string imgPerfil = null;
 
         public Registro_Empleados()
         {
@@ -59,6 +60,7 @@ namespace ProyectoNomina2019
             if (op.ShowDialog() == true)
             {
                 imgPhoto.Source = new BitmapImage(new Uri(op.FileName));
+                imgPerfil = imgPhoto.Source.ToString();
             }
         }
 
@@ -77,10 +79,17 @@ namespace ProyectoNomina2019
                 txtSueldo.Text = a.Salario_Basico.ToString();
                 FechaIncorporacion.Text = a.Fecha_Incorporacion.ToString();
                 FechaNacimiento.Text = a.Fecha_Nacimiento.ToString();
+
                 String stringPath = a.Imagen_Perfil;
-                Uri imageUri = new Uri(stringPath);
-                BitmapImage imageBitmap = new BitmapImage(imageUri);
-                imgPhoto.Source = imageBitmap;
+                if (stringPath != null)
+                {
+                    Uri imageUri = new Uri(stringPath);
+                    BitmapImage imageBitmap = new BitmapImage(imageUri);
+                    imgPhoto.Source = imageBitmap;
+                }
+                else
+                    imgPhoto.Source = null;
+
             }
         }
 
@@ -114,11 +123,9 @@ namespace ProyectoNomina2019
             if (dgNomina.SelectedItem != null)
             {
                 Empleado a = (Empleado)dgNomina.SelectedItem;
-
-
-
                 datos.Empleado.Remove(a);
                 datos.SaveChanges();
+                MessageBox.Show("Se ha eliminado un registro exitosamente!");
                 CargarDatosGrilla();
             }
             else
@@ -129,27 +136,78 @@ namespace ProyectoNomina2019
         {
             if (dgNomina.SelectedItem != null)
             {
-                Empleado a = (Empleado)dgNomina.SelectedItem;
+                try
+                {
+                    Empleado registro = new Empleado();
 
-                a.Nombres = txtNombres.Text;
-                a.Apellidos = txtApellidos.Text;
-                a.Nro_Documento = txtCedula.Text;
-                a.Direccion = txtDireccion.Text;
-                a.Nro_Telefono = txtTelefono.Text;
-
-                a.Fecha_Nacimiento = DateTime.Parse(FechaNacimiento.Text);
-                a.Fecha_Incorporacion = DateTime.Parse(FechaIncorporacion.Text);
-                a.Salario_Basico = int.Parse(txtSueldo.Text);
-
-                a.Imagen_Perfil = imgPhoto.Source.ToString();
-
-
-                datos.Entry(a).State = System.Data.Entity.EntityState.Modified;
-                datos.SaveChanges();
+                    string nombres = txtNombres.Text;
+                    string apellidos = txtApellidos.Text;
+                    string nroDoc = txtCedula.Text;
+                    string dir = txtDireccion.Text;
+                    string tel = txtTelefono.Text;
+                    DateTime fecNac = FechaNacimiento.DisplayDate;
+                    DateTime fecInc = FechaIncorporacion.DisplayDate;
+                    int salario = int.Parse(txtSueldo.Text);
 
 
+                    if (nombres.Length <= 255 && nombres != null)
+                    {
+                        if (apellidos.Length <= 255 && apellidos != null)
+                        {
+                            if (nroDoc.Length <= 50 && nroDoc != null)
+                            {
+                                if (dir.Length <= 255)
+                                {
+                                    if (tel.Length <= 20 && tel != null)
+                                    {
+                                        if (fecInc <= System.DateTime.Now)
+                                        {
+                                            if (salario > 0)
+                                            {
+                                                Empleado a = (Empleado)dgNomina.SelectedItem;
 
-                CargarDatosGrilla();
+                                                a.Nombres = nombres;
+                                                a.Apellidos = apellidos;
+                                                a.Nro_Documento = nroDoc;
+                                                a.Direccion = dir;
+                                                a.Nro_Telefono = tel;
+                                                a.Fecha_Nacimiento = fecNac;
+                                                a.Fecha_Incorporacion = fecInc;
+                                                // a.Salario_Basico = int.Parse(txtSueldo.Text); No se debe modificar el salario basico
+                                                a.Imagen_Perfil = imgPerfil;
+
+                                                datos.Entry(a).State = System.Data.Entity.EntityState.Modified;
+                                                datos.SaveChanges();
+                                                MessageBox.Show("Se ha modificado un registro exitosamente!");
+                                                CargarDatosGrilla();
+
+                                            }
+                                            else
+                                                MessageBox.Show("El salario basico no puede ser igual a cero");
+                                        }
+                                        else
+                                            MessageBox.Show("La fecha de incorporacion no puede ser mayor al fecha actual");
+                                    }
+                                    else
+                                        MessageBox.Show("El campo de telefono no puede tener mas de 20 caracteres ni estar vacio");
+                                }
+                                else
+                                    MessageBox.Show("El campo de direccion no puede tener mas de 255 caracteres");
+                            }
+                            else
+                                MessageBox.Show("El campo de Nro. de documento no puede tener mas de 50 caracteres ni estar vacio");
+                        }
+                        else
+                            MessageBox.Show("El campo de apellidos no puede tener mas de 255 caracteres ni estar vacio");
+                    }
+                    else
+                        MessageBox.Show("El campo de nombres no puede tener mas de 255 caracteres ni estar vacio");
+
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
             }
             else
                 MessageBox.Show("Debe seleccionar un registro de Empleado de la grilla para modificar!");
@@ -157,31 +215,77 @@ namespace ProyectoNomina2019
 
         private void btnGuardar_Click(object sender, RoutedEventArgs e)
         {
+            try
+            {
+                Empleado registro = new Empleado();
+                string nombres = txtNombres.Text;
+                string apellidos = txtApellidos.Text;
+                string nroDoc = txtCedula.Text;
+                string dir = txtDireccion.Text;
+                string tel = txtTelefono.Text;
+                DateTime fecNac = FechaNacimiento.DisplayDate;
+                DateTime fecInc = FechaIncorporacion.DisplayDate;
+                int salario = int.Parse(txtSueldo.Text);
 
 
+                if (nombres.Length <= 255 && nombres != null)
+                {
+                    if (apellidos.Length <= 255 && apellidos != null)
+                    {
+                        if (nroDoc.Length <= 50 && nroDoc != null)
+                        {
+                            if (dir.Length <= 255)
+                            {
+                                if (tel.Length <= 20 && tel != null)
+                                {
+                                    if (fecInc <= System.DateTime.Now)
+                                    {
+                                        if (salario > 0)
+                                        {
+                                            registro.Nombres = nombres;
+                                            registro.Apellidos = apellidos;
+                                            registro.Nro_Documento = nroDoc;
+                                            registro.Direccion = dir;
+                                            registro.Nro_Telefono = tel;
+                                            registro.Fecha_Nacimiento = fecNac;
+                                            registro.Fecha_Incorporacion = fecInc;
+                                            registro.Salario_Basico = salario;
+                                            registro.Imagen_Perfil = imgPerfil;
 
-            Empleado registro = new Empleado();
+                                            datos.Empleado.Add(registro);
+                                            datos.SaveChanges();
+                                            MessageBox.Show("Se ha agregado un nuevo empleado exitosamente!");
+                                            CargarDatosGrilla();
 
-            registro.Nombres = txtNombres.Text;
-            registro.Apellidos = txtApellidos.Text;
-            registro.Nro_Documento = txtCedula.Text;
-            registro.Direccion = txtDireccion.Text;
-            registro.Nro_Telefono = txtTelefono.Text;
+                                        }
+                                        else
+                                            MessageBox.Show("El salario basico no puede ser igual a cero");
+                                    }
+                                    else
+                                        MessageBox.Show("La fecha de incorporacion no puede ser mayor al fecha actual");
+                                }
+                                else
+                                    MessageBox.Show("El campo de telefono no puede tener mas de 20 caracteres ni estar vacio");
+                            }
+                            else
+                                MessageBox.Show("El campo de direccion no puede tener mas de 255 caracteres");
+                        }
+                        else
+                            MessageBox.Show("El campo de Nro. de documento no puede tener mas de 50 caracteres ni estar vacio");
+                    }
+                    else
+                        MessageBox.Show("El campo de apellidos no puede tener mas de 255 caracteres ni estar vacio");
+                }
+                else
+                    MessageBox.Show("El campo de nombres no puede tener mas de 255 caracteres ni estar vacio");
 
-            registro.Fecha_Nacimiento = DateTime.Parse(FechaNacimiento.Text);
-            registro.Fecha_Incorporacion = DateTime.Parse(FechaIncorporacion.Text);
-            registro.Salario_Basico = int.Parse(txtSueldo.Text);
-
-            registro.Imagen_Perfil = imgPhoto.Source.ToString();
-
-
-            datos.Empleado.Add(registro);
-            datos.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
 
         }
-
-
-
 
     }
 }

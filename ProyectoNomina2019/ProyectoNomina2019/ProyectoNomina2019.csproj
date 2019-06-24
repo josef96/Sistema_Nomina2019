@@ -74,6 +74,14 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Asignar_turnos.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Aumentos_salariales.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Conceptos_parametrizables.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -112,6 +120,12 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Asignar_turnos.xaml.cs">
+      <DependentUpon>Asignar_turnos.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Aumentos_salariales.xaml.cs">
+      <DependentUpon>Aumentos_salariales.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Concepto.cs">
       <DependentUpon>Modelo_Nomina.tt</DependentUpon>
     </Compile>
@@ -119,6 +133,15 @@
       <DependentUpon>Conceptos_parametrizables.xaml</DependentUpon>
     </Compile>
     <Compile Include="Empleado.cs">
+      <DependentUpon>Modelo_Nomina.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Empleado_Salario_Historico.cs">
+      <DependentUpon>Modelo_Nomina.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Liquidacion_Mensual.cs">
+      <DependentUpon>Modelo_Nomina.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Liquidacion_Mensual_Detalle.cs">
       <DependentUpon>Modelo_Nomina.tt</DependentUpon>
     </Compile>
     <Compile Include="MenuPrincipal.xaml.cs">

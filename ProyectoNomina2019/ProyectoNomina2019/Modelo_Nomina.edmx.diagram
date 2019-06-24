@@ -16,6 +16,16 @@
         <AssociationConnector Association="NominaModel.FK_Empleado_Usuario" ManuallyRouted="false" />
         <AssociationConnector Association="NominaModel.FK_Permisos_Empleado" ManuallyRouted="false" />
         <AssociationConnector Association="NominaModel.FK_Vacaciones_Empleado" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="NominaModel.Empleado_Salario_Historico" Width="1.5" PointX="5.25" PointY="7.25" />
+        <EntityTypeShape EntityType="NominaModel.Liquidacion_Mensual" Width="1.5" PointX="5.25" PointY="11.875" />
+        <EntityTypeShape EntityType="NominaModel.Liquidacion_Mensual_Detalle" Width="1.5" PointX="8" PointY="6.25" />
+        <AssociationConnector Association="NominaModel.FK__Liquidaci__Conce__3E52440B" />
+        <AssociationConnector Association="NominaModel.FK__Empleado___Emple__412EB0B6" />
+        <AssociationConnector Association="NominaModel.FK__Empleado__Turno___34C8D9D1" />
+        <AssociationConnector Association="NominaModel.FK__Liquidaci__Emple__3D5E1FD2" />
+        <AssociationConnector Association="NominaModel.FK__Empleado___Usuar__4222D4EF" />
+        <AssociationConnector Association="NominaModel.FK__Liquidaci__Liqui__3C69FB99" />
+        <AssociationConnector Association="NominaModel.FK__Liquidaci__Usuar__38996AB5" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

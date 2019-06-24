@@ -19,10 +19,12 @@ namespace ProyectoNomina2019
     /// </summary>
     public partial class MenuPrincipal : Window
     {
+        public int userIdLogin;
 
-        public MenuPrincipal()
+        public MenuPrincipal(int userId)
         {
             InitializeComponent();
+            userIdLogin = userId;
         }
 
         private void w_Reg_Empleado_item_Click(object sender, RoutedEventArgs e)
@@ -61,6 +63,18 @@ namespace ProyectoNomina2019
         {
             Solicitudes_permisos sp = new Solicitudes_permisos();
             sp.ShowDialog();
+        }
+
+        private void W_Aumentos_Salariales_Click(object sender, RoutedEventArgs e)
+        {
+            Aumentos_salariales au = new Aumentos_salariales(userIdLogin);
+            au.ShowDialog();
+        }
+
+        private void W_Asignar_Turnos_Click(object sender, RoutedEventArgs e)
+        {
+            Asignar_turnos at = new Asignar_turnos();
+            at.ShowDialog();
         }
     }
 }

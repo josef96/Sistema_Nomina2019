@@ -49,16 +49,17 @@ namespace ProyectoNomina2019
             TimeSpan ts;
             var hora_entrada = txtHoraEntrada.Text;
             var hora_salida = txtHoraSalida.Text;
-            if (TimeSpan.TryParse(hora_entrada,out ts) && TimeSpan.TryParse(hora_salida, out ts))
+            if (TimeSpan.TryParse(hora_entrada, out ts) && TimeSpan.TryParse(hora_salida, out ts))
             {
-                    Turno turno = new Turno();
-                    turno.Hora_Entrada = hora_entrada;
-                    turno.Hora_Salida = hora_salida;
-                    turno.Observaciones = txtObservaciones.Text;
+                Turno turno = new Turno();
+                turno.Hora_Entrada = hora_entrada;
+                turno.Hora_Salida = hora_salida;
+                turno.Observaciones = txtObservaciones.Text;
 
-                    datos.Turno.Add(turno);
-                    datos.SaveChanges();
-                    CargarDatos();
+                datos.Turno.Add(turno);
+                datos.SaveChanges();
+                MessageBox.Show("Se guardo un horario de turno exitosamente!");
+                CargarDatos();
             }
             else
             {
@@ -94,6 +95,7 @@ namespace ProyectoNomina2019
 
                 datos.Turno.Remove(tur);
                 datos.SaveChanges();
+                MessageBox.Show("Se ha eliminado un registro exitosamente!");
                 CargarDatos();
             }
             else
@@ -107,14 +109,25 @@ namespace ProyectoNomina2019
             {
                 Turno tur = (Turno)dgTurnos.SelectedItem;
 
-                tur.Hora_Entrada = txtHoraEntrada.Text;
-                tur.Hora_Salida = txtHoraSalida.Text;
-                tur.Observaciones = txtObservaciones.Text;
+                TimeSpan ts;
+                var hora_entrada = txtHoraEntrada.Text;
+                var hora_salida = txtHoraSalida.Text;
+                if (TimeSpan.TryParse(hora_entrada, out ts) && TimeSpan.TryParse(hora_salida, out ts))
+                {
+                    tur.Hora_Entrada = txtHoraEntrada.Text;
+                    tur.Hora_Salida = txtHoraSalida.Text;
+                    tur.Observaciones = txtObservaciones.Text;
 
-                datos.Entry(tur).State = System.Data.Entity.EntityState.Modified;
-                datos.SaveChanges();
+                    datos.Entry(tur).State = System.Data.Entity.EntityState.Modified;
+                    datos.SaveChanges();
+                    MessageBox.Show("Se ha modificado un registro exitosamente!");
+                    CargarDatos();
+                }
+                else
+                {
+                    MessageBox.Show("Debe ingresar en formato 24 horas (hh:mm)");
+                }
 
-                CargarDatos();
             }
             else
                 MessageBox.Show("Debe seleccionar un turno");

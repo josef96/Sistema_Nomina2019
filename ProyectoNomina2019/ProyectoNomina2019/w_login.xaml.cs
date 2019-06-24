@@ -23,6 +23,8 @@ namespace ProyectoNomina2019
         NominaEntities datos;
         string vu = string.Empty;
         string vp = string.Empty;
+        int userId;
+
         public w_login()
         {
             InitializeComponent();
@@ -31,33 +33,61 @@ namespace ProyectoNomina2019
 
         private void btnLogin_Click(object sender, RoutedEventArgs e)
         {
-            string valida = validar();
-            if (valida == "OK")
+            try
             {
-                // Tratamos de hacer el LOGIN
-                string iniciaSesion = login();
-                if (iniciaSesion == "OK")
+                // Validamos el usuario y contraseña ingresados
+                string valida = validar();
+                if (valida == "OK")
                 {
-                    MenuPrincipal mm = new MenuPrincipal();
-                    mm.ShowDialog();
+                    // Se valida la existencia del usuario y contraseña en la base de datos
+                    string iniciaSesion = login();
+                    if (iniciaSesion == "OK")
+                    {
+                        obtenerUsuarioId();
+                        MenuPrincipal mm = new MenuPrincipal(userId);
+                        mm.ShowDialog();
+                    }
+                    else
+                    {
+                        MessageBox.Show(iniciaSesion, "ERROR", MessageBoxButton.OK);
+                        txtUsuario.Focus();
+                    }
                 }
                 else
                 {
-                    MessageBox.Show(iniciaSesion, "ERROR", MessageBoxButton.OK);
-                    txtUsuario.Focus();
+                    MessageBox.Show(valida, "ERROR", MessageBoxButton.OK);
                 }
             }
-            else
+            catch (Exception ex)
             {
-                MessageBox.Show(valida, "ERROR", MessageBoxButton.OK);
+                MessageBox.Show(ex.Message);
             }
+
+        }
+
+        public void obtenerUsuarioId()
+        {
+            var Usuarios = datos.Usuario.ToList();
+            vu = txtUsuario.Text.Trim();
+            vp = txtPass.Password;
+
+
+            foreach (Usuario user in Usuarios)
+            {
+                if (user.Usuario1.ToString() == vu)
+                {
+                    if (user.Password.ToString() == vp)
+                        userId = user.Id_Usuario;
+                }
+            }
+
         }
 
         public string validar()
         {
             string resultado = "OK";
-            vu = txtUsuario.Text.Trim(); //.ToUpper()
-            vp = txtPass.Password; //.ToString()
+            vu = txtUsuario.Text.Trim();
+            vp = txtPass.Password;
 
             if (vu == "")
             {
@@ -74,8 +104,6 @@ namespace ProyectoNomina2019
             return resultado;
         }
 
-
-        //
         public string login()
         {
             string resul = "OK";
@@ -102,19 +130,44 @@ namespace ProyectoNomina2019
             return resul;
         }
 
+
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            txtUsuario.Focus();
+            try
+            {
+                txtUsuario.Focus();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
         }
 
         private void btnSalir_Click(object sender, RoutedEventArgs e)
         {
-            this.Close();
+            try
+            {
+                this.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
         }
 
         private void txtUser_LostFocus(object sender, RoutedEventArgs e)
         {
-            txtPass.Focus();
+            try
+            {
+                txtPass.Focus();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
         }
     }
 }

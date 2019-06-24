@@ -16,7 +16,8 @@
             <MenuItem Name="w_Anticipos_salariales_item" Header="Ver anticipos salariales" Click="w_Anticipos_salariales_item_Click"></MenuItem>
             <MenuItem Name="w_Pedidos_vacaciones_item" Header="Ver pedidos de vacaciones" Click="w_Pedidos_vacaciones_item_Click"></MenuItem>
             <MenuItem Name="w_Solicitudes_permisos_item" Header="Ver solicitudes de permiso" Click="w_Solicitudes_permisos_item_Click"></MenuItem>
-
+            <MenuItem Name="w_Aumentos_Salariales" Header="Aumentos Salariales" Click="W_Aumentos_Salariales_Click"></MenuItem>
+            <MenuItem Name="w_Asignar_Turnos" Header="Asignacion de turnos" Click="W_Asignar_Turnos_Click"></MenuItem>
         </MenuItem>
 
     </Menu>

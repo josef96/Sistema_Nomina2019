@@ -21,6 +21,8 @@ namespace ProyectoNomina2019
             this.Usuario = new HashSet<Usuario>();
             this.Permisos = new HashSet<Permisos>();
             this.Vacaciones = new HashSet<Vacaciones>();
+            this.Empleado_Salario_Historico = new HashSet<Empleado_Salario_Historico>();
+            this.Liquidacion_Mensual_Detalle = new HashSet<Liquidacion_Mensual_Detalle>();
         }
     
         public int Id_Empleado { get; set; }
@@ -33,6 +35,7 @@ namespace ProyectoNomina2019
         public Nullable<System.DateTime> Fecha_Incorporacion { get; set; }
         public string Imagen_Perfil { get; set; }
         public int Salario_Basico { get; set; }
+        public Nullable<int> Turno_Id { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Anticipo> Anticipo { get; set; }
@@ -42,10 +45,10 @@ namespace ProyectoNomina2019
         public virtual ICollection<Permisos> Permisos { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Vacaciones> Vacaciones { get; set; }
-
-        public override string ToString()
-        {
-            return this.Nombres;
-        }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Empleado_Salario_Historico> Empleado_Salario_Historico { get; set; }
+        public virtual Turno Turno { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Liquidacion_Mensual_Detalle> Liquidacion_Mensual_Detalle { get; set; }
     }
 }
