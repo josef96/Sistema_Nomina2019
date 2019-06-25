@@ -172,14 +172,21 @@ namespace ProyectoNomina2019
                                                 a.Direccion = dir;
                                                 a.Nro_Telefono = tel;
                                                 a.Fecha_Nacimiento = fecNac;
-                                                a.Fecha_Incorporacion = fecInc;
+                                                a.Fecha_Incorporacion = fecInc;                                                
                                                 // a.Salario_Basico = int.Parse(txtSueldo.Text); No se debe modificar el salario basico
                                                 a.Imagen_Perfil = imgPerfil;
 
-                                                datos.Entry(a).State = System.Data.Entity.EntityState.Modified;
-                                                datos.SaveChanges();
-                                                MessageBox.Show("Se ha modificado un registro exitosamente!");
-                                                CargarDatosGrilla();
+                                                if (a.Salario_Basico == int.Parse(txtSueldo.Text))
+                                                {
+
+                                                    datos.Entry(a).State = System.Data.Entity.EntityState.Modified;
+                                                    datos.SaveChanges();
+                                                    MessageBox.Show("Se ha modificado un registro exitosamente!");
+                                                    CargarDatosGrilla();
+
+                                                }
+                                                else
+                                                    MessageBox.Show("No se puede modificar el salario bàsico.");
 
                                             }
                                             else
