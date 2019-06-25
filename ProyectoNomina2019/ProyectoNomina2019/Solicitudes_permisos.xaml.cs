@@ -27,9 +27,20 @@ namespace ProyectoNomina2019
         }
         public void actualizarGrilla()
         {
-            dgPermisos.ItemsSource = null;
-            var vPermiso = datos.Vacaciones.ToList();
-            dgPermisos.ItemsSource = vPermiso;
+
+            try
+            {
+                dgPermisos.ItemsSource = datos.Permisos.ToList();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
+
+            //dgPermisos.ItemsSource = null;
+            //var vPermiso = datos.Vacaciones.ToList();
+            //dgPermisos.ItemsSource = vPermiso;
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
@@ -39,7 +50,59 @@ namespace ProyectoNomina2019
 
         private void btnSalir_Click(object sender, RoutedEventArgs e)
         {
-            this.Close();
+            this.Close();    
+        }
+
+        private void btnAceptar_Click(object sender, RoutedEventArgs e)
+        {
+
+            if (dgPermisos != null)
+            {
+                Permisos p = (Permisos)dgPermisos.SelectedItem;
+
+                if (p.Estado == "Pendiente")
+                {
+                    p.Estado = "Aceptado";
+                }
+
+                else if (p.Estado == "Aceptado")
+                {
+                    MessageBox.Show("El pedido ya fue aceptado.");
+                }
+                else
+                {
+                    MessageBox.Show("El pedido ya fue rechazado.");
+                }
+
+                datos.Entry(p).State = System.Data.Entity.EntityState.Modified;
+                datos.SaveChanges();
+                actualizarGrilla();
+
+            }
+
+        }
+
+        private void btnRechazar_Click(object sender, RoutedEventArgs e)
+        {
+
+            Permisos p = (Permisos)dgPermisos.SelectedItem;
+
+            if (p.Estado == "Pendiente")
+            {
+                p.Estado = "Rechazado";
+            }
+
+            else if (p.Estado == "Rechazado")
+            {
+                MessageBox.Show("El pedido ya fue Rechazado.");
+            }
+            else
+            {
+                MessageBox.Show("El pedido ya fue aceptado.");
+            }
+
+
+
         }
     }
 }

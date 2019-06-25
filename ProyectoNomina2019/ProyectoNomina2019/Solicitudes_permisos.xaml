@@ -5,12 +5,14 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ProyectoNomina2019"
         mc:Ignorable="d"
-         Title="Solicitudes_permisos" Height="657.282" Width="897.94" WindowStyle="None" Loaded="Window_Loaded" WindowStartupLocation="CenterScreen">
-    <Canvas Margin="0,0,2,2">
+           Title="Solicitudes_permisos" Height="637.782" Width="750.94" WindowStyle="None" Loaded="Window_Loaded" WindowStartupLocation="CenterScreen">
+    <Canvas Margin="0,0,2,22">
 
-        <GroupBox Header="Permisos" Canvas.Top="10" Height="570" Width="870" Canvas.Left="8">
+        <GroupBox Header="Permisos" Canvas.Top="10" Height="570" Width="725" Canvas.Left="8">
             <DataGrid Name="dgPermisos" Margin="0,0,0,5"></DataGrid>
         </GroupBox>
-        <Button x:Name="btnSalir" Content="Salir" Canvas.Left="776" Canvas.Top="585" Width="105" Click="btnSalir_Click" Height="52"/>
+        <Button x:Name="btnSalir" Content="Salir" Canvas.Left="436" Canvas.Top="587" Width="95" Click="btnSalir_Click"/>
+        <Button x:Name="btnAceptar" Click="btnAceptar_Click" Content="Aceptar" Canvas.Left="536" Canvas.Top="587" Width="96" />
+        <Button x:Name="btnRechazar" Click="btnRechazar_Click" Content="Rechazar" Canvas.Left="637" Canvas.Top="587" Width="95" />
     </Canvas>
 </Window>
