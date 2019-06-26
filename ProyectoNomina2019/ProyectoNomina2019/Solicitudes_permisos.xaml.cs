@@ -90,6 +90,9 @@ namespace ProyectoNomina2019
             else
                 MessageBox.Show("El pedido ya fue aprobado.");
 
+            datos.Entry(p).State = System.Data.Entity.EntityState.Modified;
+            datos.SaveChanges();
+            actualizarGrilla();
         }
     }
 }
