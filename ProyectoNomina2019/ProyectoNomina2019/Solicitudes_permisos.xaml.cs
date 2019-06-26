@@ -71,6 +71,7 @@ namespace ProyectoNomina2019
                 
                 datos.Entry(p).State = System.Data.Entity.EntityState.Modified;
                 datos.SaveChanges();
+                MessageBox.Show("El pedido se aprobado con exito!");
                 actualizarGrilla();
 
             }
@@ -92,6 +93,7 @@ namespace ProyectoNomina2019
 
             datos.Entry(p).State = System.Data.Entity.EntityState.Modified;
             datos.SaveChanges();
+            MessageBox.Show("El pedido se rechazado con exito!");
             actualizarGrilla();
         }
     }
