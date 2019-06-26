@@ -12,6 +12,6 @@
         <Button Name="btnAsignarTurno" Click="BtnAsignarTurno_Click" Content="Asignar turno" Canvas.Left="414" Canvas.Top="711" Width="165" Height="58"/>
         <Label Content="Empleados existentes" Canvas.Left="388" Canvas.Top="24" Width="248" FontSize="24"/>
         <Label Content="Turnos existentes" Canvas.Left="414" Canvas.Top="454" Width="201" FontSize="24"/>
-
+ 
     </Canvas>
 </Window>

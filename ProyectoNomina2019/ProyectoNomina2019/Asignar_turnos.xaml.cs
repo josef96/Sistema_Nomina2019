@@ -23,7 +23,7 @@ namespace ProyectoNomina2019
         public Asignar_turnos()
         {
             InitializeComponent();
-            datos = new NominaEntities();
+            datos = new NominaEntities(); 
         }
         private void CargarDatosGrilla()
         {
