@@ -12,7 +12,7 @@
             <DataGrid Name="dgPermisos" Margin="0,0,0,5"></DataGrid>
         </GroupBox>
         <Button x:Name="btnSalir" Content="Salir" Canvas.Left="436" Canvas.Top="587" Width="95" Click="btnSalir_Click"/>
-        <Button x:Name="btnAceptar" Click="btnAceptar_Click" Content="Aceptar" Canvas.Left="536" Canvas.Top="587" Width="96" />
+        <Button x:Name="btnAceptar" Click="btnAceptar_Click" Content="Aprobar" Canvas.Left="536" Canvas.Top="587" Width="96" />
         <Button x:Name="btnRechazar" Click="btnRechazar_Click" Content="Rechazar" Canvas.Left="637" Canvas.Top="587" Width="95" />
     </Canvas>
 </Window>

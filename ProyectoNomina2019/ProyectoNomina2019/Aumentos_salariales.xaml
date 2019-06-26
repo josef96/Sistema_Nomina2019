@@ -5,8 +5,14 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ProyectoNomina2019"
         mc:Ignorable="d"
-        Title="Aumentos_salariales" Height="450" Width="800">
-    <Grid>
-        
-    </Grid>
+        Title="Aumento_Salarios" Height="465" Width="963.5" Loaded="Window_Loaded">
+    <Canvas>
+        <DataGrid Name="dgEmpleados" Height="220" Canvas.Left="10" Canvas.Top="78" Width="936"/>
+        <TextBox Name="txtNuevoSalario" Height="22" Canvas.Left="157" TextWrapping="Wrap" Text="" Canvas.Top="307" Width="156"/>
+        <Label Content="Introduzca nuevo salario: " Canvas.Left="10" Canvas.Top="303" Width="158"/>
+        <Label Content="Empleados existentes" Canvas.Left="361" Canvas.Top="31" Width="260" FontSize="24"/>
+        <Label Content="(El monto debe ser mayor al actual salario)" Canvas.Left="332" Canvas.Top="307" RenderTransformOrigin="0.105,0.192" Width="244" Foreground="#DDFF0505"/>
+        <Button Name="btnActualizarSalario" Click="BtnActualizarSalario_Click" Content="Actualizar salario" Canvas.Left="402" Canvas.Top="371" Width="174" Height="53"/>
+
+    </Canvas>
 </Window>

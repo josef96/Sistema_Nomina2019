@@ -61,21 +61,17 @@ namespace ProyectoNomina2019
                 Permisos p = (Permisos)dgPermisos.SelectedItem;
 
                 if (p.Estado == "Pendiente")
-                {
-                    p.Estado = "Aceptado";
-                }
+                    p.Estado = "Aprobado";
 
-                else if (p.Estado == "Aceptado")
-                {
-                    MessageBox.Show("El pedido ya fue aceptado.");
-                }
+                else if (p.Estado == "Aprobado")
+                    MessageBox.Show("El pedido ya fue aprobado.");
+
                 else
-                {
                     MessageBox.Show("El pedido ya fue rechazado.");
-                }
-
+                
                 datos.Entry(p).State = System.Data.Entity.EntityState.Modified;
                 datos.SaveChanges();
+                MessageBox.Show("El pedido se aprobado con exito!");
                 actualizarGrilla();
 
             }
@@ -84,25 +80,21 @@ namespace ProyectoNomina2019
 
         private void btnRechazar_Click(object sender, RoutedEventArgs e)
         {
-
             Permisos p = (Permisos)dgPermisos.SelectedItem;
 
             if (p.Estado == "Pendiente")
-            {
                 p.Estado = "Rechazado";
-            }
 
             else if (p.Estado == "Rechazado")
-            {
-                MessageBox.Show("El pedido ya fue Rechazado.");
-            }
+                MessageBox.Show("El pedido ya fue rechazado.");
+
             else
-            {
-                MessageBox.Show("El pedido ya fue aceptado.");
-            }
+                MessageBox.Show("El pedido ya fue aprobado.");
 
-
-
+            datos.Entry(p).State = System.Data.Entity.EntityState.Modified;
+            datos.SaveChanges();
+            MessageBox.Show("El pedido se rechazado con exito!");
+            actualizarGrilla();
         }
     }
 }
