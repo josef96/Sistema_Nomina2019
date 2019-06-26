@@ -28,9 +28,17 @@ namespace ProyectoNomina2019
         }
         public void actualizarGrilla()
         {
-            dgDatosVaciones.ItemsSource = null;
-            var vVacaciones = datos.Vacaciones.ToList();
-            dgDatosVaciones.ItemsSource = vVacaciones;
+            try
+            {
+                dgDatosVacaciones.ItemsSource = null;
+                var vVacaciones = datos.Vacaciones.ToList();
+                dgDatosVacaciones.ItemsSource = vVacaciones;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+           
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
@@ -45,55 +53,71 @@ namespace ProyectoNomina2019
 
         private void btnAprobar_Click(object sender, RoutedEventArgs e)
         {
-            if (dgDatosVaciones.SelectedItem != null)
-            {
-                Vacaciones a = (Vacaciones)dgDatosVaciones.SelectedItem;
-
-                a.Estado = "Aprobado";
-
-
-                datos.Entry(a).State = System.Data.Entity.EntityState.Modified;
-                datos.SaveChanges();
-
-
-
-                CargarDatosGrilla();
-            }
-            else
-                MessageBox.Show("Debe seleccionar un registro de la grilla para Aprobar");
-        }
-
-        private void CargarDatosGrilla()
-        {
             try
             {
-                dgDatosVaciones.ItemsSource = datos.Vacaciones.ToList();
+                if (dgDatosVacaciones.SelectedItem != null)
+                {
+                    Vacaciones v = (Vacaciones)dgDatosVacaciones.SelectedItem;
+
+                    if (v.Estado == "Pendiente")
+                    {
+                        v.Estado = "Aprobado";
+
+                        datos.Entry(v).State = System.Data.Entity.EntityState.Modified;
+                        datos.SaveChanges();
+                        MessageBox.Show("El pedido fue aprobado con exito!");
+                        actualizarGrilla();
+                    }
+                    else if (v.Estado == "Aprobado")
+                        MessageBox.Show("El pedido ya fue aprobado.");
+                    else
+                        MessageBox.Show("El pedido ya fue rechazado.");
+
+                }
+                else
+                    MessageBox.Show("Debe seleccionar algun registro de la grilla");
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
 
+           
         }
 
         private void btnRechazar_Click(object sender, RoutedEventArgs e)
         {
-            if (dgDatosVaciones.SelectedItem != null)
+            try
             {
-                Anticipo a = (Anticipo)dgDatosVaciones.SelectedItem;
+                if (dgDatosVacaciones.SelectedItem != null)
+                {
+                    Vacaciones v = (Vacaciones)dgDatosVacaciones.SelectedItem;
 
-                a.Estado = "Aprobado";
+                    if (v.Estado == "Pendiente")
+                    {
+                        v.Estado = "Rechazado";
 
+                        datos.Entry(v).State = System.Data.Entity.EntityState.Modified;
+                        datos.SaveChanges();
+                        MessageBox.Show("El pedido fue rechazado con exito!");
+                        actualizarGrilla();
+                    }
+                    else if (v.Estado == "Aprobado")
+                        MessageBox.Show("El pedido ya fue aprobado.");
+                    else
+                        MessageBox.Show("El pedido ya fue rechazado.");
 
-                datos.Entry(a).State = System.Data.Entity.EntityState.Modified;
-                datos.SaveChanges();
+                }
+                else
+                    MessageBox.Show("Debe seleccionar algun registro de la grilla");
 
-
-
-                CargarDatosGrilla();
             }
-            else
-                MessageBox.Show("Debe seleccionar un registro de la grilla para Aprobar");
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
+
         }
     }
 }

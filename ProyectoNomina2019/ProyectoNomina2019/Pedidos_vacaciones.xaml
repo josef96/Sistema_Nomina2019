@@ -9,7 +9,7 @@
     <Canvas Margin="0,0,2,2">
 
         <GroupBox Header="Vacaciones Aprobadas" Canvas.Top="10" Height="570" Width="798" Canvas.Left="8">
-            <DataGrid Name="dgDatosVaciones" Margin="0,0,0,39"></DataGrid>
+            <DataGrid Name="dgDatosVacaciones" Margin="0,0,0,39"></DataGrid>
         </GroupBox>
         <Button x:Name="btnSalir" Content="Salir" Canvas.Left="701" Canvas.Top="585" Width="105" Click="btnSalir_Click" Height="47"/>
         <Button x:Name="btnAprobar" Content="Aprobar" Canvas.Left="480" Canvas.Top="585" Width="106" Click="btnAprobar_Click" Height="47"/>

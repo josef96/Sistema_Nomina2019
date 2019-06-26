@@ -37,10 +37,6 @@ namespace ProyectoNomina2019
                 MessageBox.Show(ex.Message);
             }
 
-
-            //dgPermisos.ItemsSource = null;
-            //var vPermiso = datos.Vacaciones.ToList();
-            //dgPermisos.ItemsSource = vPermiso;
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
@@ -56,45 +52,67 @@ namespace ProyectoNomina2019
         private void btnAceptar_Click(object sender, RoutedEventArgs e)
         {
 
-            if (dgPermisos != null)
+            try
             {
-                Permisos p = (Permisos)dgPermisos.SelectedItem;
+                if (dgPermisos.SelectedItem != null)
+                {
+                    Permisos p = (Permisos)dgPermisos.SelectedItem;
 
-                if (p.Estado == "Pendiente")
-                    p.Estado = "Aprobado";
+                    if (p.Estado == "Pendiente")
+                    {
+                        p.Estado = "Aprobado";
 
-                else if (p.Estado == "Aprobado")
-                    MessageBox.Show("El pedido ya fue aprobado.");
+                        datos.Entry(p).State = System.Data.Entity.EntityState.Modified;
+                        datos.SaveChanges();
+                        MessageBox.Show("El permiso fue aprobado con exito!");
+                        actualizarGrilla();
+                    }
+                    else if (p.Estado == "Aprobado")
+                        MessageBox.Show("El permiso ya fue aprobado.");
+                    else
+                        MessageBox.Show("El permiso ya fue rechazado.");
 
+                }
                 else
-                    MessageBox.Show("El pedido ya fue rechazado.");
-                
-                datos.Entry(p).State = System.Data.Entity.EntityState.Modified;
-                datos.SaveChanges();
-                MessageBox.Show("El pedido se aprobado con exito!");
-                actualizarGrilla();
-
+                    MessageBox.Show("Debe seleccionar algun registro de la grilla");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
             }
 
         }
 
         private void btnRechazar_Click(object sender, RoutedEventArgs e)
         {
-            Permisos p = (Permisos)dgPermisos.SelectedItem;
+            try
+            {
+                if (dgPermisos.SelectedItem != null)
+                {
+                    Permisos p = (Permisos)dgPermisos.SelectedItem;
 
-            if (p.Estado == "Pendiente")
-                p.Estado = "Rechazado";
+                    if (p.Estado == "Pendiente")
+                    {
+                        p.Estado = "Rechazado";
 
-            else if (p.Estado == "Rechazado")
-                MessageBox.Show("El pedido ya fue rechazado.");
+                        datos.Entry(p).State = System.Data.Entity.EntityState.Modified;
+                        datos.SaveChanges();
+                        MessageBox.Show("El permiso fue rechazado con exito!");
+                        actualizarGrilla();
+                    }
+                    else if (p.Estado == "Aprobado")
+                        MessageBox.Show("El permiso ya fue aprobado.");
+                    else
+                        MessageBox.Show("El permiso ya fue rechazado.");
 
-            else
-                MessageBox.Show("El pedido ya fue aprobado.");
-
-            datos.Entry(p).State = System.Data.Entity.EntityState.Modified;
-            datos.SaveChanges();
-            MessageBox.Show("El pedido se rechazado con exito!");
-            actualizarGrilla();
+                }
+                else
+                    MessageBox.Show("Debe seleccionar algun registro de la grilla");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
     }
 }

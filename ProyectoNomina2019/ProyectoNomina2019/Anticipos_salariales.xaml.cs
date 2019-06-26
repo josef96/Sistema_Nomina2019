@@ -27,9 +27,18 @@ namespace ProyectoNomina2019
         }
         public void actualizarGrilla()
         {
-            dgDatosAnticipoSalarial.ItemsSource = null;
-            var vAnticipoSalarial = datos.Anticipo.ToList();
-            dgDatosAnticipoSalarial.ItemsSource = vAnticipoSalarial;
+            try
+            {
+                dgDatosAnticipoSalarial.ItemsSource = null;
+                var vAnticipoSalarial = datos.Anticipo.ToList();
+                dgDatosAnticipoSalarial.ItemsSource = vAnticipoSalarial;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
+            
         }
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
@@ -43,59 +52,70 @@ namespace ProyectoNomina2019
 
         private void BtnAprobar_Click(object sender, RoutedEventArgs e)
         {
-            if (dgDatosAnticipoSalarial.SelectedItem != null)
-            {
-                Anticipo a = (Anticipo)dgDatosAnticipoSalarial.SelectedItem;
-
-                a.Estado = "Aprobado";
-
-
-                datos.Entry(a).State = System.Data.Entity.EntityState.Modified;
-                datos.SaveChanges();
-
-
-
-                CargarDatosGrilla();
-            }
-            else
-                MessageBox.Show("Debe seleccionar un registro de la grilla para Aprobar");
-        }
-
-        private void btnRechazar_Click(object sender, RoutedEventArgs e)
-        {
-            if (dgDatosAnticipoSalarial.SelectedItem != null)
-            {
-                Anticipo a = (Anticipo)dgDatosAnticipoSalarial.SelectedItem;
-
-                a.Estado = "Rechazado";
-
-
-                datos.Entry(a).State = System.Data.Entity.EntityState.Modified;
-                datos.SaveChanges();
-
-
-
-                CargarDatosGrilla();
-            }
-            else
-                MessageBox.Show("Debe seleccionar un registro de la grilla para Rechazar");
-        }
-        private void CargarDatosGrilla()
-        {
             try
             {
+                if (dgDatosAnticipoSalarial.SelectedItem != null)
+                {
+                    Anticipo a = (Anticipo)dgDatosAnticipoSalarial.SelectedItem;
 
-                dgDatosAnticipoSalarial.ItemsSource = datos.Vacaciones.ToList();
+                    if (a.Estado == "Pendiente")
+                    {
+                        a.Estado = "Aprobado";
+
+                        datos.Entry(a).State = System.Data.Entity.EntityState.Modified;
+                        datos.SaveChanges();
+                        MessageBox.Show("El anticipo fue aprobado con exito!");
+                        actualizarGrilla();
+                    }
+                    else if (a.Estado == "Aprobado")
+                        MessageBox.Show("El anticipo ya fue aprobado.");
+                    else
+                        MessageBox.Show("El anticipo ya fue rechazado.");
+
+                }
+                else
+                    MessageBox.Show("Debe seleccionar algun registro de la grilla");
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
 
+            
         }
 
+        private void btnRechazar_Click(object sender, RoutedEventArgs e)
+        {
 
+            try
+            {
+                if (dgDatosAnticipoSalarial.SelectedItem != null)
+                {
+                    Anticipo a = (Anticipo)dgDatosAnticipoSalarial.SelectedItem;
 
+                    if (a.Estado == "Pendiente")
+                    {
+                        a.Estado = "Rechazado";
 
+                        datos.Entry(a).State = System.Data.Entity.EntityState.Modified;
+                        datos.SaveChanges();
+                        MessageBox.Show("El anticipo fue rechazado con exito!");
+                        actualizarGrilla();
+                    }
+                    else if (a.Estado == "Aprobado")
+                        MessageBox.Show("El anticipo ya fue aprobado.");
+                    else
+                        MessageBox.Show("El anticipo ya fue rechazado.");
+
+                }
+                else
+                    MessageBox.Show("Debe seleccionar algun registro de la grilla");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+       
     }
 }
