@@ -40,5 +40,62 @@ namespace ProyectoNomina2019
         {
             this.Close();
         }
+
+        private void BtnAprobar_Click(object sender, RoutedEventArgs e)
+        {
+            if (dgDatosAnticipoSalarial.SelectedItem != null)
+            {
+                Anticipo a = (Anticipo)dgDatosAnticipoSalarial.SelectedItem;
+
+                a.Estado = "Aprobado";
+
+
+                datos.Entry(a).State = System.Data.Entity.EntityState.Modified;
+                datos.SaveChanges();
+
+
+
+                CargarDatosGrilla();
+            }
+            else
+                MessageBox.Show("Debe seleccionar un registro de la grilla para Aprobar");
+        }
+
+        private void btnRechazar_Click(object sender, RoutedEventArgs e)
+        {
+            if (dgDatosAnticipoSalarial.SelectedItem != null)
+            {
+                Anticipo a = (Anticipo)dgDatosAnticipoSalarial.SelectedItem;
+
+                a.Estado = "Rechazado";
+
+
+                datos.Entry(a).State = System.Data.Entity.EntityState.Modified;
+                datos.SaveChanges();
+
+
+
+                CargarDatosGrilla();
+            }
+            else
+                MessageBox.Show("Debe seleccionar un registro de la grilla para Rechazar");
+        }
+        private void CargarDatosGrilla()
+        {
+            try
+            {
+
+                dgDatosAnticipoSalarial.ItemsSource = datos.Vacaciones.ToList();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
+        }
+
+
+
+
     }
 }

@@ -12,5 +12,7 @@
             <DataGrid Name="dgDatosAnticipoSalarial" Margin="0,0,0,39"></DataGrid>
         </GroupBox>
         <Button x:Name="btnSalir" Content="Salir" Canvas.Left="688" Canvas.Top="568" Width="105" Click="btnSalir_Click" Height="40"/>
+        <Button x:Name="btnRechazar" Content="Rechazar" Canvas.Left="566" Canvas.Top="576" Width="98" Click="btnRechazar_Click"/>
+        <Button x:Name="btnAprobar" Content="Aprobar" Canvas.Left="445" Canvas.Top="576" Width="96" Click="BtnAprobar_Click"/>
     </Canvas>
 </Window>
