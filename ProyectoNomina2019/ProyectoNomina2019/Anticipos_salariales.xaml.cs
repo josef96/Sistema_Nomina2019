@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -29,16 +30,17 @@ namespace ProyectoNomina2019
         {
             try
             {
-                dgDatosAnticipoSalarial.ItemsSource = null;
-                var vAnticipoSalarial = datos.Anticipo.ToList();
-                dgDatosAnticipoSalarial.ItemsSource = vAnticipoSalarial;
+
+                dgDatosAnticipoSalarial.ItemsSource = datos.Anticipo.ToList();
+                dgDatosAnticipoSalarial.Columns[8].Visibility = Visibility.Hidden;
+
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
 
-            
+
         }
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
@@ -81,7 +83,7 @@ namespace ProyectoNomina2019
                 MessageBox.Show(ex.Message);
             }
 
-            
+
         }
 
         private void btnRechazar_Click(object sender, RoutedEventArgs e)
@@ -116,6 +118,6 @@ namespace ProyectoNomina2019
                 MessageBox.Show(ex.Message);
             }
         }
-       
+
     }
 }

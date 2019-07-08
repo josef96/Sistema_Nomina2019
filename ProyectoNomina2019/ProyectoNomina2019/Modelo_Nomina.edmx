@@ -53,6 +53,15 @@
           <Property Name="Fecha_Hora" Type="datetime" Nullable="false" />
           <Property Name="Usuario_Id" Type="int" Nullable="false" />
         </EntityType>
+        <EntityType Name="Liquidacion_Empleados_Salarios_Totales">
+          <Key>
+            <PropertyRef Name="Liquidacion_Id" />
+            <PropertyRef Name="Empleado_Id" />
+          </Key>
+          <Property Name="Liquidacion_Id" Type="int" Nullable="false" />
+          <Property Name="Empleado_Id" Type="int" Nullable="false" />
+          <Property Name="SalarioTotal" Type="int" Nullable="false" />
+        </EntityType>
         <EntityType Name="Liquidacion_Mensual">
           <Key>
             <PropertyRef Name="Id_Liquidacion" />
@@ -179,6 +188,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK__Liquidaci__Emple__5DCAEF64">
+          <End Role="Empleado" Type="Self.Empleado" Multiplicity="1" />
+          <End Role="Liquidacion_Empleados_Salarios_Totales" Type="Self.Liquidacion_Empleados_Salarios_Totales" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Empleado">
+              <PropertyRef Name="Id_Empleado" />
+            </Principal>
+            <Dependent Role="Liquidacion_Empleados_Salarios_Totales">
+              <PropertyRef Name="Empleado_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK__Liquidaci__Liqui__3C69FB99">
           <End Role="Liquidacion_Mensual" Type="Self.Liquidacion_Mensual" Multiplicity="1" />
           <End Role="Liquidacion_Mensual_Detalle" Type="Self.Liquidacion_Mensual_Detalle" Multiplicity="*" />
@@ -187,6 +208,18 @@
               <PropertyRef Name="Id_Liquidacion" />
             </Principal>
             <Dependent Role="Liquidacion_Mensual_Detalle">
+              <PropertyRef Name="Liquidacion_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Liquidaci__Liqui__5CD6CB2B">
+          <End Role="Liquidacion_Mensual" Type="Self.Liquidacion_Mensual" Multiplicity="1" />
+          <End Role="Liquidacion_Empleados_Salarios_Totales" Type="Self.Liquidacion_Empleados_Salarios_Totales" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Liquidacion_Mensual">
+              <PropertyRef Name="Id_Liquidacion" />
+            </Principal>
+            <Dependent Role="Liquidacion_Empleados_Salarios_Totales">
               <PropertyRef Name="Liquidacion_Id" />
             </Dependent>
           </ReferentialConstraint>
@@ -256,6 +289,7 @@
           <EntitySet Name="Concepto" EntityType="Self.Concepto" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Empleado" EntityType="Self.Empleado" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Empleado_Salario_Historico" EntityType="Self.Empleado_Salario_Historico" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Liquidacion_Empleados_Salarios_Totales" EntityType="Self.Liquidacion_Empleados_Salarios_Totales" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Liquidacion_Mensual" EntityType="Self.Liquidacion_Mensual" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Liquidacion_Mensual_Detalle" EntityType="Self.Liquidacion_Mensual_Detalle" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Permisos" EntityType="Self.Permisos" Schema="dbo" store:Type="Tables" />
@@ -282,9 +316,17 @@
             <End Role="Empleado" EntitySet="Empleado" />
             <End Role="Liquidacion_Mensual_Detalle" EntitySet="Liquidacion_Mensual_Detalle" />
           </AssociationSet>
+          <AssociationSet Name="FK__Liquidaci__Emple__5DCAEF64" Association="Self.FK__Liquidaci__Emple__5DCAEF64">
+            <End Role="Empleado" EntitySet="Empleado" />
+            <End Role="Liquidacion_Empleados_Salarios_Totales" EntitySet="Liquidacion_Empleados_Salarios_Totales" />
+          </AssociationSet>
           <AssociationSet Name="FK__Liquidaci__Liqui__3C69FB99" Association="Self.FK__Liquidaci__Liqui__3C69FB99">
             <End Role="Liquidacion_Mensual" EntitySet="Liquidacion_Mensual" />
             <End Role="Liquidacion_Mensual_Detalle" EntitySet="Liquidacion_Mensual_Detalle" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Liquidaci__Liqui__5CD6CB2B" Association="Self.FK__Liquidaci__Liqui__5CD6CB2B">
+            <End Role="Liquidacion_Mensual" EntitySet="Liquidacion_Mensual" />
+            <End Role="Liquidacion_Empleados_Salarios_Totales" EntitySet="Liquidacion_Empleados_Salarios_Totales" />
           </AssociationSet>
           <AssociationSet Name="FK__Liquidaci__Usuar__38996AB5" Association="Self.FK__Liquidaci__Usuar__38996AB5">
             <End Role="Usuario" EntitySet="Usuario" />
@@ -356,6 +398,7 @@
           <NavigationProperty Name="Empleado_Salario_Historico" Relationship="NominaModel.FK__Empleado___Emple__412EB0B6" FromRole="Empleado" ToRole="Empleado_Salario_Historico" />
           <NavigationProperty Name="Turno" Relationship="NominaModel.FK__Empleado__Turno___34C8D9D1" FromRole="Empleado" ToRole="Turno" />
           <NavigationProperty Name="Liquidacion_Mensual_Detalle" Relationship="NominaModel.FK__Liquidaci__Emple__3D5E1FD2" FromRole="Empleado" ToRole="Liquidacion_Mensual_Detalle" />
+          <NavigationProperty Name="Liquidacion_Empleados_Salarios_Totales" Relationship="NominaModel.FK__Liquidaci__Emple__5DCAEF64" FromRole="Empleado" ToRole="Liquidacion_Empleados_Salarios_Totales" />
         </EntityType>
         <EntityType Name="Permisos">
           <Key>
@@ -511,6 +554,15 @@
             <End Role="Usuario" EntitySet="Usuario" />
             <End Role="Liquidacion_Mensual" EntitySet="Liquidacion_Mensual" />
           </AssociationSet>
+          <EntitySet Name="Liquidacion_Empleados_Salarios_Totales" EntityType="NominaModel.Liquidacion_Empleados_Salarios_Totales" />
+          <AssociationSet Name="FK__Liquidaci__Emple__5DCAEF64" Association="NominaModel.FK__Liquidaci__Emple__5DCAEF64">
+            <End Role="Empleado" EntitySet="Empleado" />
+            <End Role="Liquidacion_Empleados_Salarios_Totales" EntitySet="Liquidacion_Empleados_Salarios_Totales" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Liquidaci__Liqui__5CD6CB2B" Association="NominaModel.FK__Liquidaci__Liqui__5CD6CB2B">
+            <End Role="Liquidacion_Mensual" EntitySet="Liquidacion_Mensual" />
+            <End Role="Liquidacion_Empleados_Salarios_Totales" EntitySet="Liquidacion_Empleados_Salarios_Totales" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="Empleado_Salario_Historico">
           <Key>
@@ -537,6 +589,7 @@
           <Property Name="Estado" Type="String" Nullable="false" MaxLength="1" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Liquidacion_Mensual_Detalle" Relationship="NominaModel.FK__Liquidaci__Liqui__3C69FB99" FromRole="Liquidacion_Mensual" ToRole="Liquidacion_Mensual_Detalle" />
           <NavigationProperty Name="Usuario" Relationship="NominaModel.FK__Liquidaci__Usuar__38996AB5" FromRole="Liquidacion_Mensual" ToRole="Usuario" />
+          <NavigationProperty Name="Liquidacion_Empleados_Salarios_Totales" Relationship="NominaModel.FK__Liquidaci__Liqui__5CD6CB2B" FromRole="Liquidacion_Mensual" ToRole="Liquidacion_Empleados_Salarios_Totales" />
         </EntityType>
         <EntityType Name="Liquidacion_Mensual_Detalle">
           <Key>
@@ -632,6 +685,41 @@
             </Principal>
             <Dependent Role="Liquidacion_Mensual">
               <PropertyRef Name="Usuario_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Liquidacion_Empleados_Salarios_Totales">
+          <Key>
+            <PropertyRef Name="Liquidacion_Id" />
+            <PropertyRef Name="Empleado_Id" />
+          </Key>
+          <Property Name="Liquidacion_Id" Type="Int32" Nullable="false" />
+          <Property Name="Empleado_Id" Type="Int32" Nullable="false" />
+          <Property Name="SalarioTotal" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Empleado" Relationship="NominaModel.FK__Liquidaci__Emple__5DCAEF64" FromRole="Liquidacion_Empleados_Salarios_Totales" ToRole="Empleado" />
+          <NavigationProperty Name="Liquidacion_Mensual" Relationship="NominaModel.FK__Liquidaci__Liqui__5CD6CB2B" FromRole="Liquidacion_Empleados_Salarios_Totales" ToRole="Liquidacion_Mensual" />
+        </EntityType>
+        <Association Name="FK__Liquidaci__Emple__5DCAEF64">
+          <End Type="NominaModel.Empleado" Role="Empleado" Multiplicity="1" />
+          <End Type="NominaModel.Liquidacion_Empleados_Salarios_Totales" Role="Liquidacion_Empleados_Salarios_Totales" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Empleado">
+              <PropertyRef Name="Id_Empleado" />
+            </Principal>
+            <Dependent Role="Liquidacion_Empleados_Salarios_Totales">
+              <PropertyRef Name="Empleado_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Liquidaci__Liqui__5CD6CB2B">
+          <End Type="NominaModel.Liquidacion_Mensual" Role="Liquidacion_Mensual" Multiplicity="1" />
+          <End Type="NominaModel.Liquidacion_Empleados_Salarios_Totales" Role="Liquidacion_Empleados_Salarios_Totales" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Liquidacion_Mensual">
+              <PropertyRef Name="Id_Liquidacion" />
+            </Principal>
+            <Dependent Role="Liquidacion_Empleados_Salarios_Totales">
+              <PropertyRef Name="Liquidacion_Id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -762,6 +850,15 @@
                 <ScalarProperty Name="Empleado_Id" ColumnName="Empleado_Id" />
                 <ScalarProperty Name="Liquidacion_Id" ColumnName="Liquidacion_Id" />
                 <ScalarProperty Name="Id_Detalle" ColumnName="Id_Detalle" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Liquidacion_Empleados_Salarios_Totales">
+            <EntityTypeMapping TypeName="NominaModel.Liquidacion_Empleados_Salarios_Totales">
+              <MappingFragment StoreEntitySet="Liquidacion_Empleados_Salarios_Totales">
+                <ScalarProperty Name="SalarioTotal" ColumnName="SalarioTotal" />
+                <ScalarProperty Name="Empleado_Id" ColumnName="Empleado_Id" />
+                <ScalarProperty Name="Liquidacion_Id" ColumnName="Liquidacion_Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

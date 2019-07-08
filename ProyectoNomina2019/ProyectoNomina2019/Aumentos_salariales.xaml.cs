@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -34,6 +35,11 @@ namespace ProyectoNomina2019
             try
             {
                 dgEmpleados.ItemsSource = datos.Empleado.ToList();
+                for (int i = 4; i < 19; i++)
+                {
+                    dgEmpleados.Columns[i].Visibility = Visibility.Hidden;
+                }
+                dgEmpleados.Columns[0].Visibility = Visibility.Hidden;
 
             }
             catch (Exception ex)
@@ -86,7 +92,7 @@ namespace ProyectoNomina2019
                     }
                     else
                         MessageBox.Show("El nuevo salario debe ser mayor al anterior.");
-                    
+
                 }
                 else
                     MessageBox.Show("Debe seleccionar algun empleado.");
@@ -96,6 +102,11 @@ namespace ProyectoNomina2019
                 MessageBox.Show(ex.Message);
             }
 
+        }
+
+        private void BtnSalir_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
         }
     }
 }

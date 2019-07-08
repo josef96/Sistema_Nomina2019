@@ -1,0 +1,23 @@
+﻿<Window x:Class="ProyectoNomina2019.Detalle_Liquidacion"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ProyectoNomina2019"
+        mc:Ignorable="d"
+        Title="Detalle_Liquidacion" Height="385.322" Width="1153.571" Loaded="Window_Loaded" WindowStartupLocation="CenterScreen">
+    <Canvas>
+        <Button Name="btnVerDetalle" Click="BtnVerDetalle_Click" Content="Ver detalle del empleado" Canvas.Left="423" Canvas.Top="280" Width="270" Height="57"/>
+        <Button Name="btnSalir" Click="BtnSalir_Click" Content="Salir" Canvas.Left="1009" Canvas.Top="280" Width="118" RenderTransformOrigin="0.547,0.128" Height="57"/>
+        <GroupBox Header="Liquidaciones existentes" FontSize="20" Canvas.Left="10" Canvas.Top="10" Width="602">
+            <DataGrid Name="dgLiquidaciones" Height="196" Canvas.Left="54" Canvas.Top="51" Width="578"/>
+        </GroupBox>
+
+        <GroupBox Header="Empleados existentes" Canvas.Left="630" Canvas.Top="10" Width="497" FontSize="20">
+            <DataGrid Name="dgEmpleados" Height="196" Canvas.Left="54" Canvas.Top="51" Width="476"/>
+        </GroupBox>
+
+
+
+    </Canvas>
+</Window>

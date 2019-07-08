@@ -76,5 +76,29 @@ namespace ProyectoNomina2019
             Asignar_turnos at = new Asignar_turnos();
             at.ShowDialog();
         }
+
+        private void W_Habilitar_Liquidaciones_Click(object sender, RoutedEventArgs e)
+        {
+            Habilitar_Planilla_De_Liquidaciones hp = new Habilitar_Planilla_De_Liquidaciones(userIdLogin);
+            hp.ShowDialog();
+        }
+
+        private void W_Generar_Liquidaciones_Click(object sender, RoutedEventArgs e)
+        {
+            Generar_Liquidaciones_Mensuales gl = new Generar_Liquidaciones_Mensuales();
+            gl.ShowDialog();
+        }
+
+        private void W_Asignar_Concepto_Empleado_Click(object sender, RoutedEventArgs e)
+        {
+            Asignar_Concepto_Empleado ac = new Asignar_Concepto_Empleado();
+            ac.ShowDialog();
+        }
+
+        private void W_Detalle_Liquidacion_Click(object sender, RoutedEventArgs e)
+        {
+            Detalle_Liquidacion dl = new Detalle_Liquidacion();
+            dl.ShowDialog();
+        }
     }
 }

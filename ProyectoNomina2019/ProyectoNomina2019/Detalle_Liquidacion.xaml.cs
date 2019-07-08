@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -16,30 +15,37 @@ using System.Windows.Shapes;
 namespace ProyectoNomina2019
 {
     /// <summary>
-    /// Lógica de interacción para Asignar_turnos.xaml
+    /// Lógica de interacción para Detalle_Liquidacion.xaml
     /// </summary>
-    public partial class Asignar_turnos : Window
+    public partial class Detalle_Liquidacion : Window
     {
         NominaEntities datos;
-        public Asignar_turnos()
+
+
+        public Detalle_Liquidacion()
         {
             InitializeComponent();
             datos = new NominaEntities();
         }
-        private void CargarDatosGrilla()
+
+        public void cargarDatosGrilla()
         {
+
             try
             {
-                dgTurnos.ItemsSource = datos.Turno.ToList();
                 dgEmpleados.ItemsSource = datos.Empleado.ToList();
-
+                dgEmpleados.Columns[0].Visibility = Visibility.Hidden;
                 for (int i = 4; i < 19; i++)
                 {
                     dgEmpleados.Columns[i].Visibility = Visibility.Hidden;
                 }
 
-                dgTurnos.Columns[0].Visibility = Visibility.Hidden;
-                dgTurnos.Columns[4].Visibility = Visibility.Hidden;
+                dgLiquidaciones.ItemsSource = datos.Liquidacion_Mensual.ToList();
+                dgLiquidaciones.Columns[0].Visibility = Visibility.Hidden;
+                dgLiquidaciones.Columns[4].Visibility = Visibility.Hidden;
+                dgLiquidaciones.Columns[6].Visibility = Visibility.Hidden;
+                dgLiquidaciones.Columns[7].Visibility = Visibility.Hidden;
+                dgLiquidaciones.Columns[8].Visibility = Visibility.Hidden;
 
             }
             catch (Exception ex)
@@ -47,48 +53,42 @@ namespace ProyectoNomina2019
                 MessageBox.Show(ex.Message);
             }
 
+
         }
 
-        private void Window_Loaded(object sender, RoutedEventArgs e)
+        private void BtnVerDetalle_Click(object sender, RoutedEventArgs e)
         {
-            CargarDatosGrilla();
-        }
-
-        private void BtnAsignarTurno_Click(object sender, RoutedEventArgs e)
-        {
-
             try
             {
-                if (dgEmpleados.SelectedItem != null)
+                if (dgLiquidaciones.SelectedItem != null)
                 {
-                    if (dgTurnos.SelectedItem != null)
+                    if (dgEmpleados.SelectedItem != null)
                     {
                         Empleado emp = (Empleado)dgEmpleados.SelectedItem;
-                        Turno t = (Turno)dgTurnos.SelectedItem;
-                        emp.Turno_Id = t.Id_Turno;
+                        Liquidacion_Mensual lm = (Liquidacion_Mensual)dgLiquidaciones.SelectedItem;
 
-                        datos.Entry(emp).State = System.Data.Entity.EntityState.Modified;
-                        datos.SaveChanges();
-
-                        MessageBox.Show("Se ha asignado el turno al empleado exitosamente!");
-                        CargarDatosGrilla();
+                        Detalle_Empleado_Liquidacion del = new Detalle_Empleado_Liquidacion(lm, emp);
+                        del.ShowDialog();
 
                     }
-                    else
-                        MessageBox.Show("Debe seleccionar algun turno desde la grilla");
                 }
-                else
-                    MessageBox.Show("Debe seleccionar algun empleado desde la grilla");
+
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
+
         }
 
         private void BtnSalir_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
+        }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            cargarDatosGrilla();
         }
     }
 }

@@ -1,4 +1,4 @@
-﻿// La generación de código T4 está habilitada para el modelo 'C:\Users\Pavilion\Downloads\UAA\9no semestre otoño 2019\C# avanzado\Nomina2019_Repo\ProyectoNomina2019\ProyectoNomina2019\Modelo_Nomina.edmx'. 
+﻿// La generación de código T4 está habilitada para el modelo 'C:\Users\Pavilion\Downloads\UAA\9no semestre otoño 2019\C# avanzado\josef96\Sistema_Nomina2019_completo\ProyectoNomina2019\ProyectoNomina2019\Modelo_Nomina.edmx'. 
 // Para habilitar la generación de código heredada, cambie el valor de la propiedad del diseñador 'Estrategia de generación de código'
 // por 'ObjectContext heredado'. Esta propiedad está disponible en la ventana Propiedades cuando se abre
 // el modelo en el diseñador.

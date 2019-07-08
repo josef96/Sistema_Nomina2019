@@ -35,5 +35,6 @@ namespace ProyectoNomina2019
         public virtual DbSet<Empleado_Salario_Historico> Empleado_Salario_Historico { get; set; }
         public virtual DbSet<Liquidacion_Mensual> Liquidacion_Mensual { get; set; }
         public virtual DbSet<Liquidacion_Mensual_Detalle> Liquidacion_Mensual_Detalle { get; set; }
+        public virtual DbSet<Liquidacion_Empleados_Salarios_Totales> Liquidacion_Empleados_Salarios_Totales { get; set; }
     }
 }

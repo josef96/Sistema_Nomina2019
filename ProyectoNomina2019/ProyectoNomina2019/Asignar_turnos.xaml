@@ -5,13 +5,20 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ProyectoNomina2019"
         mc:Ignorable="d"
-        Title="Asignar_turnos" Height="816.8" Width="1028.8" Loaded="Window_Loaded">
+        Title="Asignar_turnos" Height="474.8" Width="1082.8" Loaded="Window_Loaded">
     <Canvas>
-        <DataGrid Name="dgEmpleados" Height="338" Canvas.Left="14" Canvas.Top="71" Width="978"/>
-        <DataGrid Name="dgTurnos" Height="188" Canvas.Left="14" Canvas.Top="496" Width="982"/>
-        <Button Name="btnAsignarTurno" Click="BtnAsignarTurno_Click" Content="Asignar turno" Canvas.Left="414" Canvas.Top="711" Width="165" Height="58"/>
-        <Label Content="Empleados existentes" Canvas.Left="388" Canvas.Top="24" Width="248" FontSize="24"/>
-        <Label Content="Turnos existentes" Canvas.Left="414" Canvas.Top="454" Width="201" FontSize="24"/>
- 
+        <GroupBox FontSize="20" Header="Empleados Existentes" Width="569" Height="336" Canvas.Left="10" Canvas.Top="10">
+            <DataGrid Name="dgEmpleados" Canvas.Left="14" Canvas.Top="71" Width="536" Margin="0,0,0,10"/>
+        </GroupBox>
+
+        <GroupBox FontSize="20" Header="Turnos existentes" Canvas.Top="10" Width="446" Canvas.Left="608" Height="336">
+            <DataGrid Name="dgTurnos" Canvas.Left="14" Canvas.Top="496" Width="415" Margin="0,0,0,8"/>
+        </GroupBox>
+
+        <Button Name="btnAsignarTurno" Click="BtnAsignarTurno_Click" Content="Asignar turno" Canvas.Left="608" Canvas.Top="373" Width="165" Height="58"/>
+        <Button Name="btnSalir" Click="BtnSalir_Click" Content="Salir" Canvas.Left="941" Canvas.Top="373" Width="113" Height="62"/>
+
+
+
     </Canvas>
 </Window>

@@ -5,14 +5,14 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ProyectoNomina2019"
         mc:Ignorable="d"
-          Title="Anticipos_salariales" Height="638.474" Width="813.222" WindowStartupLocation="CenterScreen" WindowStyle="None" Loaded="Window_Loaded">
-    <Canvas Margin="0,0,2,2">
+          Title="Anticipos_salariales" Height="682.007" Width="813.222" WindowStartupLocation="CenterScreen" Loaded="Window_Loaded">
+    <Canvas>
 
-        <GroupBox Header="Anticipos Salariales" Canvas.Top="10" Height="553" Width="785" Canvas.Left="8">
-            <DataGrid Name="dgDatosAnticipoSalarial" Margin="0,0,0,39"></DataGrid>
+        <GroupBox Header="Anticipos Salariales" FontSize="20" Canvas.Top="10" Height="553" Width="785" Canvas.Left="8">
+            <DataGrid Name="dgDatosAnticipoSalarial" Width="755"/>
         </GroupBox>
-        <Button x:Name="btnSalir" Content="Salir" Canvas.Left="688" Canvas.Top="568" Width="105" Click="btnSalir_Click" Height="47"/>
-        <Button x:Name="btnRechazar" Content="Rechazar" Canvas.Left="566" Canvas.Top="568" Width="105" Click="btnRechazar_Click" Height="47"/>
-        <Button x:Name="btnAprobar" Content="Aprobar" Canvas.Left="445" Canvas.Top="568" Width="105" Click="BtnAprobar_Click" Height="47"/>
+        <Button x:Name="btnSalir" Content="Salir" Canvas.Left="686" Canvas.Top="594" Width="105" Click="btnSalir_Click" Height="47"/>
+        <Button x:Name="btnRechazar" Content="Rechazar" Canvas.Left="564" Canvas.Top="594" Width="105" Click="btnRechazar_Click" Height="47"/>
+        <Button x:Name="btnAprobar" Content="Aprobar" Canvas.Left="443" Canvas.Top="594" Width="105" Click="BtnAprobar_Click" Height="47"/>
     </Canvas>
 </Window>

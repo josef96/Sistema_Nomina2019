@@ -18,6 +18,7 @@ namespace ProyectoNomina2019
         public Liquidacion_Mensual()
         {
             this.Liquidacion_Mensual_Detalle = new HashSet<Liquidacion_Mensual_Detalle>();
+            this.Liquidacion_Empleados_Salarios_Totales = new HashSet<Liquidacion_Empleados_Salarios_Totales>();
         }
     
         public int Id_Liquidacion { get; set; }
@@ -30,5 +31,7 @@ namespace ProyectoNomina2019
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Liquidacion_Mensual_Detalle> Liquidacion_Mensual_Detalle { get; set; }
         public virtual Usuario Usuario { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Liquidacion_Empleados_Salarios_Totales> Liquidacion_Empleados_Salarios_Totales { get; set; }
     }
 }

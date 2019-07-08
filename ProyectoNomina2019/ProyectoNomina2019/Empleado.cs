@@ -23,6 +23,7 @@ namespace ProyectoNomina2019
             this.Vacaciones = new HashSet<Vacaciones>();
             this.Empleado_Salario_Historico = new HashSet<Empleado_Salario_Historico>();
             this.Liquidacion_Mensual_Detalle = new HashSet<Liquidacion_Mensual_Detalle>();
+            this.Liquidacion_Empleados_Salarios_Totales = new HashSet<Liquidacion_Empleados_Salarios_Totales>();
         }
     
         public int Id_Empleado { get; set; }
@@ -50,5 +51,7 @@ namespace ProyectoNomina2019
         public virtual Turno Turno { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Liquidacion_Mensual_Detalle> Liquidacion_Mensual_Detalle { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Liquidacion_Empleados_Salarios_Totales> Liquidacion_Empleados_Salarios_Totales { get; set; }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -29,12 +30,13 @@ namespace ProyectoNomina2019
         }
 
 
-
         private void CargarDatos()
         {
             try
             {
                 dgTurnos.ItemsSource = datos.Turno.ToList();
+                dgTurnos.Columns[0].Visibility = Visibility.Hidden;
+                dgTurnos.Columns[4].Visibility = Visibility.Hidden;
 
             }
             catch (Exception ex)
@@ -46,36 +48,34 @@ namespace ProyectoNomina2019
 
         private void btnGuardar_Click(object sender, RoutedEventArgs e)
         {
-            TimeSpan ts;
-            var hora_entrada = txtHoraEntrada.Text;
-            var hora_salida = txtHoraSalida.Text;
-            if (TimeSpan.TryParse(hora_entrada, out ts) && TimeSpan.TryParse(hora_salida, out ts))
+            try
             {
-                Turno turno = new Turno();
-                turno.Hora_Entrada = hora_entrada;
-                turno.Hora_Salida = hora_salida;
-                turno.Observaciones = txtObservaciones.Text;
+                TimeSpan ts;
+                var hora_entrada = txtHoraEntrada.Text;
+                var hora_salida = txtHoraSalida.Text;
+                if (TimeSpan.TryParse(hora_entrada, out ts) && TimeSpan.TryParse(hora_salida, out ts))
+                {
+                    Turno turno = new Turno();
+                    turno.Hora_Entrada = hora_entrada;
+                    turno.Hora_Salida = hora_salida;
+                    turno.Observaciones = txtObservaciones.Text;
 
-                datos.Turno.Add(turno);
-                datos.SaveChanges();
-                MessageBox.Show("Se guardo un horario de turno exitosamente!");
-                CargarDatos();
+                    datos.Turno.Add(turno);
+                    datos.SaveChanges();
+                    MessageBox.Show("Se guardo un horario de turno exitosamente!");
+                    CargarDatos();
+                }
+                else
+                {
+                    MessageBox.Show("Debe ingresar en formato 24 horas (hh:mm)");
+                }
             }
-            else
+            catch (Exception ex)
             {
-                MessageBox.Show("Debe ingresar en formato 24 horas (hh:mm)");
+                MessageBox.Show(ex.Message);
             }
 
         }
-
-        //public void PreviewTextInputOnlyNumbers(object sender, TextCompositionEventArgs e)
-        //{
-        //    int character = Convert.ToInt32(Convert.ToChar(e.Text));
-        //    if (character >= 48 && character <= 57)
-        //        e.Handled = false;
-        //    else
-        //        e.Handled = true;
-        //}
 
         private void btnLimpiar_Click(object sender, RoutedEventArgs e)
         {
@@ -83,6 +83,7 @@ namespace ProyectoNomina2019
             txtHoraEntrada.Text = string.Empty;
             txtHoraSalida.Text = string.Empty;
             txtObservaciones.Text = string.Empty;
+            txtHoraEntrada.Focus();
 
         }
 
@@ -92,6 +93,16 @@ namespace ProyectoNomina2019
             if (dgTurnos.SelectedItem != null)
             {
                 Turno tur = (Turno)dgTurnos.SelectedItem;
+
+                var buscar = (from emp in datos.Empleado
+                              where emp.Turno_Id == tur.Id_Turno
+                              select emp).FirstOrDefault();
+
+                if (buscar != null)
+                {
+                    MessageBox.Show("No se puede eliminar un turno ya asociado a un empleado");
+                    return;
+                }
 
                 datos.Turno.Remove(tur);
                 datos.SaveChanges();
@@ -105,39 +116,46 @@ namespace ProyectoNomina2019
 
         private void btnModificar_Click(object sender, RoutedEventArgs e)
         {
-            if (dgTurnos.SelectedItem != null)
+            try
             {
-                Turno tur = (Turno)dgTurnos.SelectedItem;
-
-                TimeSpan ts;
-                var hora_entrada = txtHoraEntrada.Text;
-                var hora_salida = txtHoraSalida.Text;
-                if (TimeSpan.TryParse(hora_entrada, out ts) && TimeSpan.TryParse(hora_salida, out ts))
+                if (dgTurnos.SelectedItem != null)
                 {
-                    tur.Hora_Entrada = txtHoraEntrada.Text;
-                    tur.Hora_Salida = txtHoraSalida.Text;
-                    tur.Observaciones = txtObservaciones.Text;
+                    Turno tur = (Turno)dgTurnos.SelectedItem;
 
-                    datos.Entry(tur).State = System.Data.Entity.EntityState.Modified;
-                    datos.SaveChanges();
-                    MessageBox.Show("Se ha modificado un registro exitosamente!");
-                    CargarDatos();
+                    TimeSpan ts;
+                    var hora_entrada = txtHoraEntrada.Text;
+                    var hora_salida = txtHoraSalida.Text;
+                    if (TimeSpan.TryParse(hora_entrada, out ts) && TimeSpan.TryParse(hora_salida, out ts))
+                    {
+                        tur.Hora_Entrada = txtHoraEntrada.Text;
+                        tur.Hora_Salida = txtHoraSalida.Text;
+                        tur.Observaciones = txtObservaciones.Text;
+
+                        datos.Entry(tur).State = System.Data.Entity.EntityState.Modified;
+                        datos.SaveChanges();
+                        MessageBox.Show("Se ha modificado un registro exitosamente!");
+                        CargarDatos();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Debe ingresar en formato 24 horas (hh:mm)");
+                    }
+
                 }
                 else
-                {
-                    MessageBox.Show("Debe ingresar en formato 24 horas (hh:mm)");
-                }
+                    MessageBox.Show("Debe seleccionar un turno");
 
             }
-            else
-                MessageBox.Show("Debe seleccionar un turno");
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
         }
 
         private void dgTurnos_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-
-
-            if (dgTurnos.SelectedItem != null)
+            try
             {
                 Turno t = (Turno)dgTurnos.SelectedItem;
 
@@ -146,6 +164,10 @@ namespace ProyectoNomina2019
                 txtHoraSalida.Text = t.Hora_Salida;
                 txtObservaciones.Text = t.Observaciones;
 
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
             }
 
         }

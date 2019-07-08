@@ -5,29 +5,28 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ProyectoNomina2019"
         mc:Ignorable="d"
-        Title="Conceptos Parametrizables" Height="552" Width="531"
+        Title="Conceptos Parametrizables" Height="453" Width="646.5"
         WindowStartupLocation="CenterScreen"
         Loaded="Window_Loaded">
 
+    <Canvas>
+        <Label Content="ID Concepto" HorizontalAlignment="Left" VerticalAlignment="Top" Canvas.Left="46" Canvas.Top="14"/>
+        <Label Content="Descripcion" HorizontalAlignment="Left" VerticalAlignment="Top" Canvas.Left="46" Canvas.Top="46"/>
+        <Label Content="Tipo" HorizontalAlignment="Left" VerticalAlignment="Top" Canvas.Left="46" Canvas.Top="76"/>
 
+        <TextBox Name="txtIdConcepto" HorizontalAlignment="Left" Height="24" TextWrapping="Wrap" VerticalAlignment="Top" Width="64" IsReadOnly="True" Canvas.Left="174" Canvas.Top="14"/>
+        <TextBox Name="txtDescripcion"  HorizontalAlignment="Left" Height="24" TextWrapping="Wrap"  VerticalAlignment="Top" Width="64" Canvas.Left="174" Canvas.Top="42"/>
+        <TextBox Name="txtTipo" HorizontalAlignment="Left" Height="24" TextWrapping="Wrap"  VerticalAlignment="Top" Width="64" Canvas.Left="174" Canvas.Top="70"/>
 
-    <Grid>
-        <Label Content="ID Concepto" HorizontalAlignment="Left" Margin="46,34,0,0" VerticalAlignment="Top"/>
-        <Label Content="Descripcion" HorizontalAlignment="Left" Margin="46,65,0,0" VerticalAlignment="Top"/>
-        <Label Content="Tipo" HorizontalAlignment="Left" Margin="46,96,0,0" VerticalAlignment="Top"/>
-
-        <TextBox Name="txtIdConcepto" HorizontalAlignment="Left" Height="23" Margin="174,34,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="64" IsReadOnly="True"/>
-        <TextBox Name="txtDescripcion"  HorizontalAlignment="Left" Height="23" Margin="174,62,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="64"/>
-        <TextBox Name="txtTipo" HorizontalAlignment="Left" Height="23" Margin="174,90,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="64"/>
-
-        <GroupBox Header="Conceptos" Canvas.Left="10" Canvas.Top="256" Width="466" Margin="26,138,31,63">
+        <GroupBox Header="Conceptos existentes" FontSize="20" Canvas.Left="46" Canvas.Top="107" Width="494" Height="220">
             <DataGrid Name="dgConceptos" MouseDoubleClick="dgConceptos_MouseDoubleClick"></DataGrid>
         </GroupBox>
 
-        <Button x:Name="btnGuardar" Content="Guardar" HorizontalAlignment="Left" Margin="386,463,0,0" VerticalAlignment="Top" Width="105" RenderTransformOrigin="0.312,-0.181" Click="btnGuardar_Click" Height="48" />
-        <Button x:Name="btnLimpiar" Content="Limpiar" HorizontalAlignment="Left" Margin="22,463,0,0" VerticalAlignment="Top" Width="105" RenderTransformOrigin="0.429,1.019" Click="btnLimpiar_Click" Height="48" />
-        <Button x:Name="btnEliminar" Content="Eliminar" HorizontalAlignment="Left" Margin="143,463,0,0" VerticalAlignment="Top" Width="105" Click="btnEliminar_Click" Height="48" />
-        <Button x:Name="btnModificar" Content="Modificar" HorizontalAlignment="Left" Margin="263,463,0,0" VerticalAlignment="Top" Width="105" Click="btnModificar_Click" Height="48" />
+        <Button x:Name="btnGuardar" Content="Guardar" HorizontalAlignment="Left" VerticalAlignment="Top" Width="104" RenderTransformOrigin="0.312,-0.181" Click="btnGuardar_Click" Height="48" Canvas.Left="393" Canvas.Top="348" />
+        <Button x:Name="btnLimpiar" Content="Limpiar" HorizontalAlignment="Left" VerticalAlignment="Top" Width="105" RenderTransformOrigin="0.429,1.019" Click="btnLimpiar_Click" Height="48" Canvas.Left="20" Canvas.Top="348" />
+        <Button x:Name="btnEliminar" Content="Eliminar" HorizontalAlignment="Left" VerticalAlignment="Top" Width="105" Click="btnEliminar_Click" Height="48" Canvas.Left="140" Canvas.Top="348" />
+        <Button x:Name="btnModificar" Content="Modificar" HorizontalAlignment="Left" VerticalAlignment="Top" Width="106" Click="btnModificar_Click" Height="48" Canvas.Left="265" Canvas.Top="348" />
+        <Button x:Name="btnSalir" Content="Salir" HorizontalAlignment="Left" VerticalAlignment="Top" Width="104" Height="48" Click="BtnSalir_Click" Canvas.Left="517" Canvas.Top="348"/>
 
-    </Grid>
+    </Canvas>
 </Window>

@@ -1,0 +1,42 @@
+﻿<Window x:Class="ProyectoNomina2019.Detalle_Empleado_Liquidacion"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ProyectoNomina2019"
+        mc:Ignorable="d"
+        Title="Detalle_Empleado_Liquidacion" Height="805.33" Width="640.457" 
+        Loaded="Window_Loaded" WindowStartupLocation="CenterScreen">
+    <Canvas Name="cvsResumen">
+        <Rectangle Fill="White" Height="655" Canvas.Left="10" Stroke="Black" Canvas.Top="57" Width="611"/>
+        <Label Content="Resumen de liquidacion mensual" FontSize="24" Canvas.Left="128" Canvas.Top="10"/>
+        <Rectangle Fill="#FF564EF7" Height="64" Canvas.Left="10" Stroke="Black" Canvas.Top="57" Width="611"/>
+        <Label Name="lblMes" Foreground="White" FontSize="24" Content="08" Canvas.Left="86" Canvas.Top="79" Width="66"/>
+        <Label  Foreground="White" FontSize="24" Content="Mes: " Canvas.Left="25" Canvas.Top="79" Width="66"/>
+        <Label Name="lblAnho" Foreground="White" FontSize="24" Content="2019" Canvas.Left="523" Canvas.Top="79" Width="66"/>
+        <Label  Foreground="White" FontSize="24" Content="Año: " Canvas.Left="468" Canvas.Top="79" Width="70"/>
+        <Label Name="lblEmpleado" Foreground="#FF564EF7" Content="Jose Florentin" FontSize="24" Canvas.Left="152" Canvas.Top="126"/>
+        <Label  Content="Empleado: " Foreground="#FF564EF7" FontSize="24" Canvas.Left="25" Canvas.Top="126"/>
+
+        <Rectangle Fill="#FF564EF7" Height="536" Canvas.Left="10" Stroke="Black" Canvas.Top="176" Width="298"/>
+        <Rectangle Fill="#FFB8B3B3" Height="536" Canvas.Left="308" Stroke="Black" Canvas.Top="176" Width="156"/>
+        <Label Content="Ingresos" Foreground="#FF564EF7" FontSize="20" Canvas.Left="343" Canvas.Top="176"/>
+
+        <Label Name="lblSalarioBasico" Content="" FontSize="14" Foreground="#FF047004" Canvas.Left="343" Canvas.Top="641"/>
+
+
+        <Rectangle Fill="#FFB8B3B3" Height="536" Canvas.Left="464" Stroke="Black" Canvas.Top="176" Width="156"/>
+        <Label Content="Egresos" Foreground="#FF564EF7" FontSize="20" Canvas.Left="504" Canvas.Top="176"/>
+        <Label Content="Conceptos" Foreground="White" FontSize="20" Canvas.Left="86" Canvas.Top="176"/>
+        <Button Name="btnSalir" Click="BtnSalir_Click" Content="Salir" Canvas.Left="503" Canvas.Top="719" Width="117" Height="49"/>
+        <Label Content="Salario Total a cobrar: " Canvas.Left="10" Canvas.Top="719" Width="164" FontSize="16"/>
+        <Label Name="lblSalarioTotal" Content="" Canvas.Left="171" Canvas.Top="717" Width="182" FontSize="16"/>
+        <Label Content="Totales: " Foreground="White" FontSize="20" Canvas.Left="109" Canvas.Top="675"/>
+        <Label Name="lblTotalIngresos" Content="" Canvas.Left="343" Canvas.Top="675" FontSize="14" Foreground="#FF047004" />
+        <Label Name="lblTotalEgresos" Content="" Canvas.Left="504" Canvas.Top="675" FontSize="14" Foreground="Red" />
+        <Label Content="Salario Basico: " Foreground="White" FontSize="14" Canvas.Left="25" Canvas.Top="641"/>
+        <!--<Label Content="1500000" Foreground="Red" FontSize="14" Canvas.Left="503" Canvas.Top="213"/>-->
+
+
+    </Canvas>
+</Window>

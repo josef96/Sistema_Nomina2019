@@ -19,6 +19,12 @@
             <MenuItem Name="w_Aumentos_Salariales" Header="Aumentos Salariales" Click="W_Aumentos_Salariales_Click"></MenuItem>
             <MenuItem Name="w_Asignar_Turnos" Header="Asignacion de turnos" Click="W_Asignar_Turnos_Click"></MenuItem>
         </MenuItem>
+        <MenuItem Header="Liquidaciones Salariales" >
+            <MenuItem Name="w_Habilitar_Liquidaciones" Header="Habilitar planilla de liquidaciones" Click="W_Habilitar_Liquidaciones_Click"></MenuItem>
+            <MenuItem Name="w_Generar_Liquidaciones" Header="Generar Planilla con los salarios correspondientes" Click="W_Generar_Liquidaciones_Click"></MenuItem>
+            <MenuItem Name="w_Asignar_Concepto_Empleado" Header="Asignar conceptos a los empleados por liquidacion" Click="W_Asignar_Concepto_Empleado_Click"></MenuItem>
+            <MenuItem Name="w_Detalle_Liquidacion" Header="Resumen de liquidaciones mensuales de cada empleado" Click="W_Detalle_Liquidacion_Click"></MenuItem>
+        </MenuItem>
 
     </Menu>
 </Window>
