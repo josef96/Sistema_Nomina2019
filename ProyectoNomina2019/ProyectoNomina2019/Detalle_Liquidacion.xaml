@@ -9,12 +9,12 @@
     <Canvas>
         <Button Name="btnVerDetalle" Click="BtnVerDetalle_Click" Content="Ver detalle del empleado" Canvas.Left="423" Canvas.Top="280" Width="270" Height="57"/>
         <Button Name="btnSalir" Click="BtnSalir_Click" Content="Salir" Canvas.Left="1009" Canvas.Top="280" Width="118" RenderTransformOrigin="0.547,0.128" Height="57"/>
-        <GroupBox Header="Liquidaciones existentes" FontSize="20" Canvas.Left="10" Canvas.Top="10" Width="602">
-            <DataGrid Name="dgLiquidaciones" Height="196" Canvas.Left="54" Canvas.Top="51" Width="578"/>
+        <GroupBox Header="Liquidaciones existentes" FontSize="20" Canvas.Left="10" Canvas.Top="10" Width="602" Height="230">
+            <DataGrid Name="dgLiquidaciones" Canvas.Left="54" Canvas.Top="51" Margin="6,6,16,10"/>
         </GroupBox>
 
-        <GroupBox Header="Empleados existentes" Canvas.Left="630" Canvas.Top="10" Width="497" FontSize="20">
-            <DataGrid Name="dgEmpleados" Height="196" Canvas.Left="54" Canvas.Top="51" Width="476"/>
+        <GroupBox Header="Empleados existentes" Canvas.Left="630" Canvas.Top="10" Width="497" FontSize="20" Height="230">
+            <DataGrid Name="dgEmpleados" Height="178" Canvas.Left="54" Canvas.Top="51" Margin="4,9,13,9"/>
         </GroupBox>
 
 

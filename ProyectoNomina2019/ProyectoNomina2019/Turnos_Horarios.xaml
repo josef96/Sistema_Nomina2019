@@ -8,7 +8,7 @@
         WindowStartupLocation="CenterScreen"
         Loaded="Window_Loaded"
         
-         Title="Turnos y Horarios" Height="523.5" Width="641">
+         Title="Turnos y Horarios" Height="504" Width="647.346">
     <Canvas>
 
 
@@ -23,14 +23,14 @@
         <TextBox Name="txtObservaciones" HorizontalAlignment="Left" Height="23" Margin="174,127,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="288" Grid.ColumnSpan="2"/>
 
         <GroupBox Header="Turnos" Height="242" Canvas.Left="46" Canvas.Top="158" Width="416">
-            <DataGrid Name="dgTurnos" MouseDoubleClick="dgTurnos_MouseDoubleClick"></DataGrid>
+            <DataGrid Name="dgTurnos" MouseDoubleClick="dgTurnos_MouseDoubleClick" Margin="10,10,12,6"></DataGrid>
         </GroupBox>
 
         <Button x:Name="btnGuardar" Content="Guardar" HorizontalAlignment="Left" VerticalAlignment="Top" Width="104" RenderTransformOrigin="0.312,-0.181" Click="btnGuardar_Click" Grid.ColumnSpan="2" Height="46" Canvas.Left="396" Canvas.Top="413" />
         <Button x:Name="btnLimpiar" Content="Limpiar" HorizontalAlignment="Left" VerticalAlignment="Top" Width="105" RenderTransformOrigin="0.429,1.019" Click="btnLimpiar_Click" Height="46" Canvas.Left="18" Canvas.Top="413" />
         <Button x:Name="btnEliminar" Content="Eliminar" HorizontalAlignment="Left" VerticalAlignment="Top" Width="105" Click="btnEliminar_Click" Height="46" Canvas.Left="143" Canvas.Top="413" />
         <Button x:Name="btnModificar" Content="Modificar" HorizontalAlignment="Left" VerticalAlignment="Top" Width="105" Click="btnModificar_Click" Height="46" Canvas.Left="268" Canvas.Top="413" />
-        <Button x:Name="btnSalir" Content="Salir" Canvas.Left="522" Canvas.Top="413" Width="104" Height="46"/>
+        <Button x:Name="btnSalir" Content="Salir" Canvas.Left="522" Canvas.Top="413" Width="104" Height="46" Click="BtnSalir_Click"/>
 
     </Canvas>
 </Window>

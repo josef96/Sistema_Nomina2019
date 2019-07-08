@@ -176,5 +176,10 @@ namespace ProyectoNomina2019
         {
             CargarDatos();
         }
+
+        private void BtnSalir_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
     }
 }
