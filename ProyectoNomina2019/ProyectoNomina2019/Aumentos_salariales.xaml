@@ -9,7 +9,7 @@
         WindowStartupLocation="CenterScreen">
     <Canvas>
         <GroupBox FontSize="20" Header="Empleados existentes" Canvas.Left="10" Canvas.Top="10" Width="566">
-            <DataGrid Name="dgEmpleados" Height="220" Canvas.Left="10" Canvas.Top="78" Width="536"/>
+            <DataGrid Name="dgEmpleados" Height="208" Canvas.Left="10" Canvas.Top="78" Width="536" Margin="9,0"/>
         </GroupBox>
 
         <TextBox Name="txtNuevoSalario" Height="22" Canvas.Left="156" TextWrapping="Wrap" Text="" Canvas.Top="289" Width="156"/>

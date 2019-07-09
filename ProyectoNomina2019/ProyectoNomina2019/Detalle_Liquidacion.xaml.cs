@@ -67,6 +67,16 @@ namespace ProyectoNomina2019
                         Empleado emp = (Empleado)dgEmpleados.SelectedItem;
                         Liquidacion_Mensual lm = (Liquidacion_Mensual)dgLiquidaciones.SelectedItem;
 
+                        Liquidacion_Empleados_Salarios_Totales lest =
+                            datos.Liquidacion_Empleados_Salarios_Totales.Find(lm.Id_Liquidacion, emp.Id_Empleado);
+
+                        // Valida que solo muestre detalles de empleados a los cuales se les haya calculado el salario Total a cobrar
+                        if(lest == null)
+                        {
+                            MessageBox.Show("El empleado no figura en la planilla");
+                            return;
+                        }
+
                         Detalle_Empleado_Liquidacion del = new Detalle_Empleado_Liquidacion(lm, emp);
                         del.ShowDialog();
 

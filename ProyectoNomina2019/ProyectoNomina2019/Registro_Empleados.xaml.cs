@@ -294,29 +294,9 @@ namespace ProyectoNomina2019
 
         }
 
-        private void dgNomina_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void BtnSalir_Click(object sender, RoutedEventArgs e)
         {
-
-            //if (dgNomina.SelectedItem != null)
-            //{
-            //    Empleado empleadeSeleccionade = (Empleado)dgNomina.SelectedItem;
-
-
-            //    txtId.Text = empleadeSeleccionade.Id_Empleado.ToString();
-            //    txtNombres.Text = empleadeSeleccionade.Nombres;
-            //    txtApellidos.Text = empleadeSeleccionade.Apellidos;
-            //    txtCedula.Text = empleadeSeleccionade.Nro_Documento;
-            //    txtDireccion.Text = empleadeSeleccionade.Direccion;
-            //    txtTelefono.Text = empleadeSeleccionade.Nro_Telefono;
-            //    FechaNacimiento.DisplayDate = empleadeSeleccionade.Fecha_Nacimiento;
-            //    FechaIncorporacion.DisplayDate = empleadeSeleccionade.Fecha_Incorporacion;
-
-            //    txtSueldo.Text = empleadeSeleccionade.Salario_Basico.ToString();
-
-
-            //}
-
-
+            this.Close();
         }
     }
 }

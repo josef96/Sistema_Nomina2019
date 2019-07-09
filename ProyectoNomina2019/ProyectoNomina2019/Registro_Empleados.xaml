@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:ProyectoNomina2019"
         mc:Ignorable="d"
           Loaded="Window_Loaded"
-          Title="Registro_Empleados" Height="543.6" Width="1094.455" ScrollViewer.HorizontalScrollBarVisibility="Auto" ScrollViewer.VerticalScrollBarVisibility="Auto"
+          Title="Registro_Empleados" Height="591.6" Width="1094.455" ScrollViewer.HorizontalScrollBarVisibility="Auto" ScrollViewer.VerticalScrollBarVisibility="Auto"
         
         WindowStartupLocation="CenterScreen">
     <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
@@ -47,6 +47,7 @@
             <Button x:Name="btnEliminar" Content="Eliminar" Click="btnEliminar_Click" Height="46" Canvas.Left="740" Canvas.Top="434" Width="96"/>
             <Button x:Name="btnModificar" Content="Modificar" Click="btnModificar_Click" Height="46" Canvas.Left="850" Canvas.Top="434" Width="96"/>
             <Button x:Name="btnGuardar" Content="Guardar" Click="btnGuardar_Click" Height="46" Canvas.Left="962" Canvas.Top="434" Width="96"/>
+            <Button x:Name="btnSalir" Content="Salir" Click="BtnSalir_Click" Canvas.Left="446" Canvas.Top="472" Width="96" Height="46"/>
 
         </Canvas>
 
