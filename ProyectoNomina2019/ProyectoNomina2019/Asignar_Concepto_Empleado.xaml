@@ -5,8 +5,28 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ProyectoNomina2019"
         mc:Ignorable="d"
-        Title="Asignar_Concepto_Empleado" Height="450" Width="800">
-    <Grid>
-        
-    </Grid>
+         Title="Asignar_Concepto_Empleado" Height="661.031" Width="1056.055" WindowStartupLocation="CenterScreen" Loaded="Window_Loaded">
+    <Canvas>
+        <GroupBox Canvas.Left="10" Header="Empleados existentes" Width="411" Height="248" Canvas.Top="10" FontSize="20">
+            <DataGrid MouseDoubleClick="DgEmpleados_MouseDoubleClick" Name="dgEmpleados" Canvas.Left="10" Canvas.Top="57" Width="383" Margin="0,0,0,2"/>
+        </GroupBox>
+
+        <GroupBox  FontSize="20" Canvas.Left="444" Canvas.Top="10" Header="Liquidaciones existentes sin cerrar" Height="248" Width="588">
+            <DataGrid MouseDoubleClick="DgLiquidaciones_MouseDoubleClick" Name="dgLiquidaciones" Canvas.Left="298" Canvas.Top="350" Width="566" Margin="0,0,0,-1"/>
+        </GroupBox>
+
+        <TextBox Name="txtMonto" Height="24" Canvas.Left="572" TextWrapping="Wrap" Text="" Canvas.Top="270" Width="142" RenderTransformOrigin="0.511,0.542"/>
+        <Label Content="Monto del concepto seleccionado:" Canvas.Left="339" Canvas.Top="270" Width="228" FontSize="14"/>
+        <Button Name="btnGuardar" Click="BtnGuardar_Click" Content="Guardar" Canvas.Left="339" Canvas.Top="561" Width="150" Height="54"/>
+        <Button Name="btnSalir" Click="BtnSalir_Click" Content="Salir" Canvas.Left="884" Canvas.Top="561" Width="148" Height="54"/>
+        <ComboBox Name="cboConceptos" Canvas.Left="10" Canvas.Top="304" Width="292"/>
+        <Label Content="Seleccione un concepto:" Canvas.Left="10" Canvas.Top="270" Width="170" FontSize="14"/>
+        <GroupBox FontSize="20" Name="grbDetalles" Header="Detalle de la liquidacion seleccionada" Canvas.Left="334" Canvas.Top="304" Width="698" Height="251">
+            <DataGrid Name="dgDetalle_Liquidacion" ItemsSource="{Binding}" Canvas.Left="298" Canvas.Top="538" Width="670" Margin="0,0,0,5"/>
+        </GroupBox>
+        <Button Name="btnEliminarDetalle" Click="BtnEliminarDetalle_Click" Content="Eliminar Detalle" Canvas.Left="621" Canvas.Top="561" Width="150" Height="54"/>
+
+
+    </Canvas>
 </Window>
+
