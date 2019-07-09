@@ -70,6 +70,15 @@ namespace ProyectoNomina2019
         }
 
 
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+
+            CargarDatosVentana();
+
+        }
+
+
         public void LimpiarCampos()
         {
             txtMonto.Clear();
@@ -160,6 +169,159 @@ namespace ProyectoNomina2019
                 MessageBox.Show(ex.Message);
             }
 
+        }
+
+        private void BtnSalir_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
+
+        private void DgLiquidaciones_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            try
+            {
+                grbDetalles.Header = "Detalles de la liquidacion seleccionada";
+                Liquidacion_Mensual lm = (Liquidacion_Mensual)dgLiquidaciones.SelectedItem;
+                DataTable dt = new DataTable("Detalles_Liquidacion");
+                dt.Columns.Add("Anho");
+                dt.Columns.Add("Mes");
+                dt.Columns.Add("Empleado");
+                dt.Columns.Add("NroDocumento");
+                dt.Columns.Add("Concepto");
+                dt.Columns.Add("Monto");
+
+                var detallesLiquidacion = (from d in datos.Liquidacion_Mensual_Detalle
+                                           where d.Liquidacion_Id == lm.Id_Liquidacion
+                                           select d).ToList();
+
+                foreach (Liquidacion_Mensual_Detalle lmd in detallesLiquidacion)
+                {
+                    Empleado emp = datos.Empleado.Find(lmd.Empleado_Id);
+                    Concepto c = datos.Concepto.Find(lmd.Concepto_Id);
+                    string nombreCompleto = emp.Nombres + " " + emp.Apellidos;
+                    string doc = emp.Nro_Documento;
+
+                    dt.Rows.Add(lm.Anho, lm.Mes, nombreCompleto, doc, c.Descripcion, lmd.Monto);
+
+                }
+
+                dgDetalle_Liquidacion.ItemsSource = dt.DefaultView;
+                //dgDetalle_Liquidacion.Columns[5].Visibility = Visibility.Hidden;
+                //dgDetalle_Liquidacion.Columns[6].Visibility = Visibility.Hidden;
+                //dgDetalle_Liquidacion.Columns[7].Visibility = Visibility.Hidden;
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void BtnEliminarDetalle_Click(object sender, RoutedEventArgs e)
+        {
+
+            try
+            {
+                if (dgDetalle_Liquidacion.SelectedItem != null)
+                {
+                    //Liquidacion_Mensual_Detalle lmd = (Liquidacion_Mensual_Detalle)dgDetalle_Liquidacion.SelectedItem;
+                    DataRowView filaSelected = dgDetalle_Liquidacion.SelectedItem as DataRowView;
+                    short anho = short.Parse(filaSelected["Anho"].ToString());
+                    short mes = short.Parse(filaSelected["Mes"].ToString());
+                    string nroDoc = filaSelected["NroDocumento"].ToString();
+                    string conc = filaSelected["Concepto"].ToString();
+
+
+                    var liquidacion = (from l in datos.Liquidacion_Mensual
+                                       where l.Mes == mes && l.Anho == anho
+                                       select l).FirstOrDefault();
+
+                    var empleado = (from emp in datos.Empleado
+                                    where emp.Nro_Documento == nroDoc
+                                    select emp).FirstOrDefault();
+
+                    Liquidacion_Empleados_Salarios_Totales lest =
+                        datos.Liquidacion_Empleados_Salarios_Totales.Find(liquidacion.Id_Liquidacion, empleado.Id_Empleado);
+
+                    if (lest != null)
+                    {
+                        MessageBox.Show("No se puede eliminar este detalle," +
+                            " porque forma parte del calculo de liquidacion del anho " + anho.ToString() + " y mes " + mes.ToString() + ".");
+                        return;
+                    }
+
+                    var concepto = (from c in datos.Concepto
+                                    where c.Descripcion == conc
+                                    select c).FirstOrDefault();
+
+
+
+                    var detalleEliminar = (from d in datos.Liquidacion_Mensual_Detalle
+                                           where d.Liquidacion_Id == liquidacion.Id_Liquidacion && d.Empleado_Id == empleado.Id_Empleado && d.Concepto_Id == concepto.Id_Concepto
+                                           select d).FirstOrDefault();
+
+                    datos.Liquidacion_Mensual_Detalle.Remove(detalleEliminar);
+                    datos.SaveChanges();
+                    MessageBox.Show("Se ha eliminado un registro de detalle exitosamente!");
+                    LimpiarCampos();
+                }
+                else
+                    MessageBox.Show("Debe seleccionar un registro de la grilla de detalles!");
+
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
+        }
+
+        private void DgEmpleados_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            try
+            {
+                if (dgLiquidaciones.SelectedItem != null)
+                {
+                    Empleado empSelected = (Empleado)dgEmpleados.SelectedItem;
+                    Liquidacion_Mensual lmSelected = (Liquidacion_Mensual)dgLiquidaciones.SelectedItem;
+
+                    var detallePorEmpleado = (from d in datos.Liquidacion_Mensual_Detalle
+                                              where d.Liquidacion_Id == lmSelected.Id_Liquidacion && d.Empleado_Id == empSelected.Id_Empleado
+                                              select d).ToList();
+
+                    DataTable dt = new DataTable("Detalles_Liquidacion");
+                    dt.Columns.Add("Anho");
+                    dt.Columns.Add("Mes");
+                    dt.Columns.Add("Empleado");
+                    dt.Columns.Add("NroDocumento");
+                    dt.Columns.Add("Concepto");
+                    dt.Columns.Add("Monto");
+
+                    foreach (Liquidacion_Mensual_Detalle lmd in detallePorEmpleado)
+                    {
+                        Empleado emp = datos.Empleado.Find(lmd.Empleado_Id);
+                        Concepto c = datos.Concepto.Find(lmd.Concepto_Id);
+                        string nombreCompleto = emp.Nombres + " " + emp.Apellidos;
+                        string doc = emp.Nro_Documento;
+
+                        dt.Rows.Add(lmSelected.Anho, lmSelected.Mes, nombreCompleto, doc, c.Descripcion, lmd.Monto);
+
+                    }
+
+                    dgDetalle_Liquidacion.ItemsSource = dt.DefaultView;
+                    grbDetalles.Header = "Detalles por empleado y liquidacion";
+
+                }
+                else
+                    MessageBox.Show("Debe seleccionar un registro de la grilla de liquidaciones para filtrar");
+
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
     }
 }
