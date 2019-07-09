@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ProyectoNomina2019"
         mc:Ignorable="d"
-        Title="Detalle_Empleado_Liquidacion" Height="805.33" Width="640.457" 
+        Title="Detalle_Empleado_Liquidacion" Height="818.713" Width="640.457" 
         Loaded="Window_Loaded" WindowStartupLocation="CenterScreen">
     <Canvas Name="cvsResumen">
         <Rectangle Fill="White" Height="655" Canvas.Left="10" Stroke="Black" Canvas.Top="57" Width="611"/>

@@ -34,8 +34,12 @@ namespace ProyectoNomina2019
         {
             try
             {
-
                 dgNomina.ItemsSource = datos.Empleado.ToList();
+                for (int i = 10; i < 19; i++)
+                {
+                    dgNomina.Columns[i].Visibility = Visibility.Hidden;
+                }
+                dgNomina.Columns[0].Visibility = Visibility.Hidden;
             }
             catch (Exception ex)
             {
