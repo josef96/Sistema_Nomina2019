@@ -5,8 +5,13 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ProyectoNomina2019"
         mc:Ignorable="d"
-        Title="Generar_Liquidaciones_Mensuales" Height="450" Width="800">
-    <Grid>
-        
-    </Grid>
+        Title="Generar_Liquidaciones_Mensuales"  Height="626" Width="976" Loaded="Window_Loaded">
+    <Canvas>
+        <GroupBox Header="Liquidaciones mensuales existentes" Canvas.Left="10" Canvas.Top="10" Width="946" Height="489" FontSize="20">
+            <DataGrid Name="dgLiquidaciones" Canvas.Left="42" Canvas.Top="69" Width="910" Margin="0,10,0,4"/>
+        </GroupBox>
+        <Button Name="btnGenerarSalarios" Click="BtnGenerarSalarios_Click" Content="Generar salarios Totales" Canvas.Left="357" Canvas.Top="519" Width="201" Height="66"/>
+        <Button Name="btnSalir" Content="Salir" Click="BtnSalir_Click" Canvas.Left="754" Canvas.Top="519" Width="202" Height="66"/>
+
+    </Canvas>
 </Window>
