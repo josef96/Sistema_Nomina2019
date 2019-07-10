@@ -35,6 +35,7 @@
         <Label Name="lblTotalIngresos" Content="" Canvas.Left="343" Canvas.Top="675" FontSize="14" Foreground="#FF047004" />
         <Label Name="lblTotalEgresos" Content="" Canvas.Left="504" Canvas.Top="675" FontSize="14" Foreground="Red" />
         <Label Content="Salario Basico: " Foreground="White" FontSize="14" Canvas.Left="25" Canvas.Top="641"/>
+        <Button x:Name="btnImprimir" Click="btnImprimir_Click" Content="Imprimir" Canvas.Left="381" Canvas.Top="719" Width="117" Height="49"/>
         <!--<Label Content="1500000" Foreground="Red" FontSize="14" Canvas.Left="503" Canvas.Top="213"/>-->
 
 
