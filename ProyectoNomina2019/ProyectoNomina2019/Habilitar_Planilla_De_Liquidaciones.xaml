@@ -5,8 +5,18 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ProyectoNomina2019"
         mc:Ignorable="d"
-        Title="Habilitar_Planilla_De_Liquidaciones" Height="450" Width="800">
-    <Grid>
-        
-    </Grid>
+        Title="Habilitar_Planilla_De_Liquidaciones" Height="399" Width="558.389" Loaded="Window_Loaded"
+        WindowStartupLocation="CenterScreen">
+    <Canvas>
+        <Label Content="Mes:" HorizontalAlignment="Left" VerticalAlignment="Top" Canvas.Left="17" Canvas.Top="273"/>
+        <Label Content="Año:" HorizontalAlignment="Left" VerticalAlignment="Top" Canvas.Left="17" Canvas.Top="318"/>
+        <Label Content="" HorizontalAlignment="Left" VerticalAlignment="Top" Canvas.Left="26" Canvas.Top="270"/>
+        <Button Name="btnHabilitar" Click="BtnHabilitar_Click" Content="Habilitar" Canvas.Left="270" Canvas.Top="298" Width="102" Height="46"/>
+        <Button Name="btnSalir" Click="BtnSalir_Click" Content="Salir" Canvas.Left="436" Canvas.Top="298" Width="102" Height="46"/>
+        <TextBox Name="txtMes" Height="23" Canvas.Left="61" TextWrapping="Wrap" Text="" Canvas.Top="273" Width="120"/>
+        <TextBox Name="txtAnho" Height="23" Canvas.Left="61" TextWrapping="Wrap" Text="" Canvas.Top="318" Width="120"/>
+        <GroupBox FontSize="20" Header="Liquidaciones abiertas" Canvas.Top="10" Canvas.Left="10" Width="528" Height="255">
+            <DataGrid Name="dgLiquidaciones" Canvas.Top="34" Width="504" Canvas.Left="10" Margin="0,0,0,2"/>
+        </GroupBox>
+    </Canvas>
 </Window>
